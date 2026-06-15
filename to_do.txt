@@ -1,3 +1,6 @@
 book to note
 chromadb        lib
 huggingface     lib
+understand the models
+
+exam 4
