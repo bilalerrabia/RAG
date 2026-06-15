@@ -1,7 +1,14 @@
-from llm_model import Small_LLM_Model
+from langchain_text_splitters import RecursiveCharacterTextSplitter, Language
 
+splitter = RecursiveCharacterTextSplitter(
+    chunk_size=100,
+    chunk_overlap=0
+)
 
+with open("main.py", "r") as f:
+    text = f.read()
 
-model = Small_LLM_Model()
+res = splitter.split_text(text=text)
 
-print(model.encode("bilal"))
+for par in res:
+    print(par, end="\n\n")
