@@ -1,0 +1,3 @@
+book to note
+chromadb        lib
+huggingface     lib
