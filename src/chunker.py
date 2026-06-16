@@ -1,36 +1,31 @@
 from langchain_text_splitters import RecursiveCharacterTextSplitter, Language
 # from langchain_core.documents import Document
-
+import pathlib
 from models import MinimalSource, ChunkData
 
-def splitter(file_path: str, max_chunk_size: int) -> list[ChunkData]:
-    # something like that:
-        # splitter = RecursiveCharacterTextSplitter.from_language(
-        #     chunk_size=300,
-        #     chunk_overlap=0,
-        #     language=Language.MARKDOWN,
-        #     add_start_index=True
-        # )
+def splitter_func(file_path: str, max_chunk_size: int) -> list[ChunkData]:
 
-        # with open("../vllm-0.10.1/find_cuda_init.py") as f:
-        #     text = f.read()
+    file_extension: str = pathlib.Path(file_path).suffix
+    splitter = splitter_extensions_handler(file_extension, max_chunk_size)
+    with open(file_path, encoding="utf-8", errors="ignore") as f:
+        text = f.read()
+    res = splitter.create_documents([text])
 
-        # res = splitter.create_documents([text])
+    result: list[ChunkData] = []
 
-        # print(len(res))
+    for chunk in res:
+        start_index = chunk.metadata["start_index"]
+        end_index = start_index + len(chunk.page_content)
+        chunk.metadata["end_index"] = end_index
 
-        # for i, chunk in enumerate(res):
-        #     start = chunk.metadata['start_index']
-        #     end = chunk.metadata['start_index'] + len(chunk.page_content)
-        #     is_valid = chunk.page_content == text[start:end]
-        #     print(f"chunk {i}: valid={is_valid}")
-        # return (res)
+        result.append(ChunkData(
+            file_path=file_path,
+            first_character_index=start_index,
+            last_character_index=end_index,
+            text=chunk.page_content,
+            ))
 
-    pass
-
-def get_text(doc: MinimalSource) -> ChunkData:
-    # give the MinimalSource and return the str (need for the bm25)
-    pass
+    return result
 
 def splitter_extensions_handler(file_extension: str, max_chunk_size: int)-> RecursiveCharacterTextSplitter:
 
@@ -56,7 +51,6 @@ def splitter_extensions_handler(file_extension: str, max_chunk_size: int)-> Recu
         )
 
     return splitter
-
 
 def loader(repo_path : str, max_chunk_size: int)-> list[ChunkData]:
     # will start read the files from vllm-0.10.1
