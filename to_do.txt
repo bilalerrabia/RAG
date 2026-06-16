@@ -4,3 +4,7 @@ huggingface     lib
 understand the models
 
 exam 4
+
+1. splitter: Done(video)  - claude exercices - finish the notes - project splitter final version 16/jun.
+
+regex
