@@ -8,7 +8,22 @@ splitter = RecursiveCharacterTextSplitter(
 with open("main.py", "r") as f:
     text = f.read()
 
-res = splitter.split_text(text=text)
+res = splitter.create_documents([text])
 
-for par in res:
-    print(par, end="\n\n")
+
+print(res)
+
+
+splitter = RecursiveCharacterTextSplitter.from_language(
+    chunk_size=2000,
+    chunk_overlap=200,
+    language=Language.PYTHON
+    )
+
+# is equel to:
+
+splitter = RecursiveCharacterTextSplitter(
+    chunk_size=2000,
+    chunk_overlap=200,
+    separator=["\nclass ", "\ndef ", "\n\tdef ", "\n\n", "\n", " ", ""]
+    )
