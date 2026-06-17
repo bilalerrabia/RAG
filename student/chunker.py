@@ -62,8 +62,8 @@ def loader(repo_path: str, max_chunk_size: int) -> list[ChunkData]:
     for f in tqdm.tqdm(files, desc="Chunking files"):
         if not f.is_file():
             continue
-        if f.suffix not in [".py", ".md", ".rst", ".txt"]:
-            continue
+        # if f.suffix not in [".py", ".md", ".rst", ".txt"]:
+        #     continue
         try:
             data_set += splitter_func(str(f), max_chunk_size)
         except Exception:

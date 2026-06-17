@@ -22,7 +22,7 @@ from .models import MinimalSource, ChunkData
 
 def retrieval(chunks_path: str, index_path: str, query: str, k: int) -> list[MinimalSource]:
 
-    index = bm25s.BM25.load(index_path)
+    index = bm25s.BM25.load(f"{index_path}/bm25_index")
 
     results_list: list[MinimalSource] = []
 
@@ -41,7 +41,5 @@ def retrieval(chunks_path: str, index_path: str, query: str, k: int) -> list[Min
                 first_character_index=chunkdata["first_character_index"],
                 last_character_index=chunkdata["last_character_index"]
         ))
-        # print(chunks[rep_index]["text"])
-
 
     return results_list

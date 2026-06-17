@@ -235,29 +235,57 @@
 # # set load_corpus=False if you don't need the corpus
 
 
+
+# # Step 1 - test chunker alone first
+# chunks = loader("vllm-0.10.1", 500)
+# print(f"Total chunks: {len(chunks)}")
+# print(f"First chunk: {chunks[0]}")
+
+# # Step 2 - build index
+# indexer("vllm-0.10.1", "data/processed", 500)
+# print("Indexing done")
+
+# # Step 3 - test retrieval
+# results = retrieval(
+#     chunks_path="data/processed/chunks.json",   # where is chunks.json?
+#     index_path="data/processed",    # where did indexer save the BM25 index?
+#     query="how does vLLM handle memory?",
+#     k=5
+# )
+
+# for res in results:
+#     print(res)
+
+import fire
+import json
 from .chunker import loader
 from .indexer import indexer
-import json
 from .retriever import retrieval
 
-# Step 1 - test chunker alone first
-chunks = loader("vllm-0.10.1", 500)
-print(f"Total chunks: {len(chunks)}")
-print(f"First chunk: {chunks[0]}")
+# index          → index the repository
+# search         → search for a single query
+# search_dataset → process multiple questions from JSON
+# answer         → answer a single question with context
+# answer_dataset → generate answers from search results
+# evaluate       → evaluate search results against ground truth
 
-# Step 2 - build index
-indexer("vllm-0.10.1", "data/processed", 500)
-print("Indexing done")
+class RAG:
 
-# Step 3 - test retrieval
-results = retrieval(
-    chunks_path="data/processed/chunks.json",   # where is chunks.json?
-    index_path="data/processed",    # where did indexer save the BM25 index?
-    query="how does vLLM handle memory?",
-    k=5
-)
+    def index(self, repo_path="data/raw/vllm-0.10.1", repo_to_save="data/processed", max_chunk_size=2000):
+        indexer(repo_path, repo_to_save, max_chunk_size)
+        print(f"Ingestion complete! Indices saved under {repo_to_save}")
 
-for res in results:
-    print(res)
+    def search(self, chunks_path: str = "data/processed/chunks.json", index_path: str = "data/processed", query: str = "", k: int = 5):
+        results = retrieval(
+            chunks_path=chunks_path,   # where is chunks.json?
+            index_path=index_path,    # where did indexer save the BM25 index?
+            query=query,
+            k=k
+        )
+        for res in results:
+            print(res)
 
-# print(results)
+# uv run python -m student index --repo_path data/raw/vllm-0.10.1
+# uv run python -m student search "how does vLLM handle memory?" --k 5
+
+fire.Fire(RAG)

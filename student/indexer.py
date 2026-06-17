@@ -20,7 +20,7 @@ def indexer(repo_path: str, repo_to_save: str, max_chunk_size: int) -> None:
     retriever.index(corpus_tokens)
 
     pathlib.Path(repo_to_save).mkdir(parents=True, exist_ok=True)
-    retriever.save(repo_to_save)
+    retriever.save(f"{repo_to_save}/bm25_index")
 
     with open(f"{repo_to_save}/chunks.json", "w") as f:
 
