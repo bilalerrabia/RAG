@@ -1,5 +1,5 @@
-from chunker import loader
-from models import ChunkData
+from .chunker import loader
+from .models import ChunkData
 import bm25s
 import tqdm
 import json

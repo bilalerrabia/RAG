@@ -1,7 +1,7 @@
 from langchain_text_splitters import RecursiveCharacterTextSplitter, Language
 import pathlib
 import tqdm
-from models import ChunkData
+from .models import ChunkData
 
 
 def splitter_func(file_path: str, max_chunk_size: int) -> list[ChunkData]:
