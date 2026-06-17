@@ -3,4 +3,4 @@ __pycache__
 .venv
 .python-version
 .vscode
-data/processed
+#data/processed
