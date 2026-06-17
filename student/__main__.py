@@ -269,6 +269,14 @@ from .retriever import retrieval
 # answer_dataset → generate answers from search results
 # evaluate       → evaluate search results against ground truth
 
+# If both work → next step is search_dataset
+# It needs to:
+
+# load a dataset JSON (RagDataset / UnansweredQuestion list)
+# run retrieval() on each question
+# build a StudentSearchResults object
+# save it to JSON
+
 class RAG:
 
     def index(self, repo_path="data/raw/vllm-0.10.1", repo_to_save="data/processed", max_chunk_size=2000):

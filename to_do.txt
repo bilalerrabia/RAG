@@ -9,7 +9,7 @@ exam 4
 1. splitter: Done(video)  - claude exercices - finish the notes - project splitter final version 16/jun.     done
 2. indexer : claude resources bm25s - code book to excalidraw idf bm25.
 
-13. complit the retriever, test all the pipeline, 
+next -> V.6.5 Searching one dataset
 
 
 Phase 3 — chunker.py                                                                done
