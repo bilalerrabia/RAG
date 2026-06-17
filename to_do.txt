@@ -6,5 +6,17 @@ understand the models
 exam 4
 
 1. splitter: Done(video)  - claude exercices - finish the notes - project splitter final version 16/jun.
+2. indexer : claude resources bm25s - code book to excalidraw idf bm25.
 
 regex
+
+Phase 3 — chunker.py         ←                                                    done
+Phase 4 — indexer.py         ← BM25 index + save to disk
+Phase 5 — retriever.py       ← load index + search(query, k)
+Phase 6 — __main__.py        ← CLI with Fire wiring everything
+Phase 7 — evaluator.py       ← recall@k metric
+              ↓
+         MEASURE recall@k scores here
+              ↓
+Phase 8 — answerer.py        ← Qwen/Qwen3-0.6B
+Phase 9 — ChromaDB bonus     ← only if recall@k needs boosting

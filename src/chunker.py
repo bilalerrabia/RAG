@@ -1,7 +1,8 @@
 from langchain_text_splitters import RecursiveCharacterTextSplitter, Language
-# from langchain_core.documents import Document
 import pathlib
-from models import MinimalSource, ChunkData
+import tqdm
+from models import ChunkData
+
 
 def splitter_func(file_path: str, max_chunk_size: int) -> list[ChunkData]:
 
@@ -17,7 +18,6 @@ def splitter_func(file_path: str, max_chunk_size: int) -> list[ChunkData]:
         start_index = chunk.metadata["start_index"]
         end_index = start_index + len(chunk.page_content)
         chunk.metadata["end_index"] = end_index
-
         result.append(ChunkData(
             file_path=file_path,
             first_character_index=start_index,
@@ -27,32 +27,45 @@ def splitter_func(file_path: str, max_chunk_size: int) -> list[ChunkData]:
 
     return result
 
-def splitter_extensions_handler(file_extension: str, max_chunk_size: int)-> RecursiveCharacterTextSplitter:
+
+def splitter_extensions_handler(
+        file_extension: str,
+        max_chunk_size: int) -> RecursiveCharacterTextSplitter:
 
     extension = {
         ".py": Language.PYTHON,
         ".md": Language.MARKDOWN,
         ".rst": Language.RST,
-    }
+        }
 
-    if file_extention in extention:
+    if file_extension in extension:
         splitter = RecursiveCharacterTextSplitter.from_language(
-        chunk_size=max_chunk_size,
-        chunk_overlap=max_chunk_size // 10,
-        language=extension[file_extension],
-        add_start_index=True
+            chunk_size=max_chunk_size,
+            chunk_overlap=max_chunk_size // 10,
+            language=extension[file_extension],
+            add_start_index=True
         )
 
     else:
         splitter = RecursiveCharacterTextSplitter(
-        chunk_size=max_chunk_size,
-        chunk_overlap=max_chunk_size // 10,
-        add_start_index=True
+            chunk_size=max_chunk_size,
+            chunk_overlap=max_chunk_size // 10,
+            add_start_index=True
         )
 
     return splitter
 
-def loader(repo_path : str, max_chunk_size: int)-> list[ChunkData]:
-    # will start read the files from vllm-0.10.1
-    # and call the splitter_extensions_handler to get the right split strategy then call the splitter
-    pass
+def loader(repo_path: str, max_chunk_size: int) -> list[ChunkData]:
+
+    data_set: list[ChunkData] = []
+    files = list(pathlib.Path(repo_path).rglob("*"))
+    for f in tqdm.tqdm(files, desc="Chunking files"):
+        if not f.is_file():
+            continue
+        if f.suffix not in [".py", ".md", ".rst", ".txt"]:
+            continue
+        try:
+            data_set += splitter_func(str(f), max_chunk_size)
+        except Exception:
+            continue
+    return data_set
