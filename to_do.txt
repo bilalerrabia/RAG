@@ -1,22 +1,22 @@
 book to note
 chromadb        lib
-huggingface     lib
+huggingface     lib    llm_model
 understand the models
 regex
-protect all
-
-
-
-
-
+protect all open's
 
 exam 4
 
-1. splitter: Done(video)  - claude exercices - finish the notes - project splitter final version 16/jun.     done
-2. indexer : claude resources bm25s - code book to excalidraw idf bm25.
 
-next -> V.6.5 Searching one dataset
 
+
+
+
+next -> answerer.py and answered CLI
+next -> answer_dataset CLI
+next -> llm_model fix and understand
+
+next -> chromadb
 
 
 Phase 3 — chunker.py                                                                done

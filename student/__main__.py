@@ -267,7 +267,7 @@ from .answerer import answerer
 # index          → index the repository                            <- done
 # search         → search for a single query                       <- done
 # search_dataset → process multiple questions from JSON            <- done
-# answer         → answer a single question with context
+# answer         → answer a single question with context      <- next
 # answer_dataset → generate answers from search results
 # evaluate       → evaluate search results against ground truth   <- done
 
