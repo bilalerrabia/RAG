@@ -7,8 +7,10 @@ class MinimalSource(BaseModel):
     first_character_index: int
     last_character_index: int
 
+
 class ChunkData(MinimalSource):
     text: str
+
 
 class UnansweredQuestion(BaseModel):
     question_id: str = Field(default_factory=lambda:
@@ -25,7 +27,6 @@ class RagDataset(BaseModel):
     rag_questions: List[AnsweredQuestion | UnansweredQuestion]
 
 
-
 class MinimalSearchResults(BaseModel):
     question_id: str
     question: str
@@ -34,6 +35,7 @@ class MinimalSearchResults(BaseModel):
 
 class MinimalAnswer(MinimalSearchResults):
     answer: str
+
 
 class StudentSearchResults(BaseModel):
     search_results: List[MinimalSearchResults]

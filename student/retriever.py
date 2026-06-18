@@ -19,7 +19,6 @@ from .models import MinimalSource, ChunkData
 
 
 
-
 def retrieval(chunks_path: str, index_path: str, query: str, k: int) -> list[MinimalSource]:
 
     index = bm25s.BM25.load(f"{index_path}/bm25_index")
