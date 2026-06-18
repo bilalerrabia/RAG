@@ -9,9 +9,16 @@ exam 4
 
 
 
-next -> subject
+next -> add StudentSearchResultsAndAnswer to answer_dataset
 next -> chromadb
+next -> subject
 next -> llm_model fix and understand
+next -> classes pydantic
+next -> correction_shett
+next -> moulinette
+next -> ./exam
+next -> vllm understanding
+
 
 
 Phase 3 — chunker.py                                                                done
@@ -22,6 +29,21 @@ Phase 7 — evaluator.py                                                        
               ↓                                                                     done
          MEASURE recall@k scores here                                               done
               ↓                                                                     done
-Phase 8 — answerer.py        ← Qwen/Qwen3-0.6B                                  50% done
+Phase 8 — answerer.py        ← Qwen/Qwen3-0.6B                                  80% done
 Phase 9 — ChromaDB bonus     ← only if recall@k needs boosting                   0%
 
+
+correction:
+     
+     3. "What is the difference between TF-IDF and BM25 as retrieval methods?"
+     
+     If the student implemented bonus features, the README should also
+     document those experiments and their results.
+
+     Semantic embeddings used for retrieval chromaDB (bonus).
+
+     Hybrid retrieval combining BM25 with semantic embeddings
+
+     Query expansion implemented (e.g., synonym expansion, query rewriting) (bonus).
+
+     Caching implemented (index caching, query caching, etc.) (bonus)

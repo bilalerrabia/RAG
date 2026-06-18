@@ -25,9 +25,10 @@ class RAG:
         indexer(repo_path, repo_to_save, max_chunk_size)
         print(f"Ingestion complete! Indices saved under {repo_to_save}")
 
-    def search(self,
+
+    def search(self, query: str,
     chunks_path: str = "data/processed/chunks.json", index_path: str = "data/processed",
-    query: str = "", k: int = 5) -> list[MinimalSource]:
+    k: int = 10) -> list[MinimalSource]:
 
         results: list[MinimalSource] = retrieval(
             chunks_path=chunks_path,
@@ -37,6 +38,8 @@ class RAG:
         )
 
         return results
+
+
 
     def search_dataset(
             self, dataset_path: str="data/datasets/UnansweredQuestions/dataset_docs_public.json",
@@ -95,15 +98,17 @@ class RAG:
         return texts
 
 
-    def answer(self, query:str = "") -> str:
+    def answer(self, query:str = "", k: int = 10) -> str:
 
-        context: list[MinimalSearchResults] = self.search(query=query)
+        context: list[MinimalSearchResults] = self.search(query=query, k=k)
 
         contex_strs: list[str] = self.get_context_texts(context)
 
         answer = answerer(query, contex_strs)
 
-        return str(answer)
+        return f"\n{answer}"
+
+# add StudentSearchResultsAndAnswer to answer_dataset
 
     def answer_dataset(self,
         student_search_results_path: str = "data/output/search_results/dataset_docs_public.json",
@@ -135,5 +140,7 @@ class RAG:
             print(f"Processed {len(final_result)} of {len(final_result)} questions")
             print(f"Saved student_search_results_and_answer to {save_directory}/dataset_docs_public.json")
 
-
-fire.Fire(RAG)
+try:
+    fire.Fire(RAG)
+except Exception as e:
+    print(f"error: {e}")
