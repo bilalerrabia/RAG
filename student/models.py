@@ -25,6 +25,7 @@ class RagDataset(BaseModel):
     rag_questions: List[AnsweredQuestion | UnansweredQuestion]
 
 
+
 class MinimalSearchResults(BaseModel):
     question_id: str
     question: str
@@ -33,7 +34,6 @@ class MinimalSearchResults(BaseModel):
 
 class MinimalAnswer(MinimalSearchResults):
     answer: str
-
 
 class StudentSearchResults(BaseModel):
     search_results: List[MinimalSearchResults]

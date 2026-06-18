@@ -1,0 +1,19 @@
+[
+    {
+        "question_id": "17526382-7764-4120-b5e8-2d3726b8a4da",
+        "question": "What HTTP endpoint is used to dynamically load a LoRA adapter in vLLM?",
+        "sources": [
+            {
+                "file_path": "data/raw/vllm-0.10.1/docs/features/lora.md",
+                "first_character_index": 4695,
+                "last_character_index": 6098
+            },
+            {
+                "file_path": "data/raw/vllm-0.10.1/vllm/plugins/lora_resolvers/README.md",
+                "first_character_index": 0,
+                "last_character_index": 829
+            }
+        ],
+        "answer": "The HTTP endpoint used to dynamically load a LoRA adapter in vLLM is `/v1/load_lora_adapter`."
+    }
+]

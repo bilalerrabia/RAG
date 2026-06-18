@@ -10,23 +10,18 @@ exam 4
 
 
 
-
-
-next -> answerer.py and answered CLI
-next -> answer_dataset CLI
 next -> llm_model fix and understand
-
 next -> chromadb
 
 
 Phase 3 — chunker.py                                                                done
 Phase 4 — indexer.py                                                                done
 Phase 5 — retriever.py                                                              done
-Phase 6 — __main__.py        ← CLI with Fire wiring everything
+Phase 6 — __main__.py        ← CLI with Fire wiring everything                      done
 Phase 7 — evaluator.py                                                              done
-              ↓
-         MEASURE recall@k scores here
-              ↓
-Phase 8 — answerer.py        ← Qwen/Qwen3-0.6B
-Phase 9 — ChromaDB bonus     ← only if recall@k needs boosting
+              ↓                                                                     done
+         MEASURE recall@k scores here                                               done
+              ↓                                                                     done
+Phase 8 — answerer.py        ← Qwen/Qwen3-0.6B                                  50% done
+Phase 9 — ChromaDB bonus     ← only if recall@k needs boosting                   0%
 
