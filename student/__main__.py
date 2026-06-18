@@ -253,9 +253,6 @@
 #     k=5
 # )
 
-# for res in results:
-#     print(res)
-
 import fire
 import tqdm
 import json
@@ -265,21 +262,15 @@ from .models import MinimalSearchResults, StudentSearchResults
 from .indexer import indexer
 from .retriever import retrieval
 from .evaluator import evaluate
+from .answerer import answerer
 
-# index          → index the repository
-# search         → search for a single query
-# search_dataset → process multiple questions from JSON
+# index          → index the repository                            <- done
+# search         → search for a single query                       <- done
+# search_dataset → process multiple questions from JSON            <- done
 # answer         → answer a single question with context
 # answer_dataset → generate answers from search results
-# evaluate       → evaluate search results against ground truth
+# evaluate       → evaluate search results against ground truth   <- done
 
-# If both work → next step is search_dataset
-# It needs to:
-
-# load a dataset JSON (RagDataset / UnansweredQuestion list)
-# run retrieval() on each question
-# build a StudentSearchResults object
-# save it to JSON
 
 class RAG:
 
@@ -289,8 +280,8 @@ class RAG:
 
     def search(self, chunks_path: str = "data/processed/chunks.json", index_path: str = "data/processed", query: str = "", k: int = 5):
         results = retrieval(
-            chunks_path=chunks_path,   # where is chunks.json?
-            index_path=index_path,    # where did indexer save the BM25 index?
+            chunks_path=chunks_path,
+            index_path=index_path,
             query=query,
             k=k
         )
@@ -341,5 +332,12 @@ class RAG:
         evaluate(student_path, right_answers_path, 5)
         evaluate(student_path, right_answers_path, 10)
         evaluate(student_path, right_answers_path, k)
+
+    def answer(self, query:str = ""):
+
+        context = self.search(query=query)
+
+        answer = answerer(query, context).split("Answer:")[1]
+        return answer
 
 fire.Fire(RAG)
