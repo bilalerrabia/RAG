@@ -16,7 +16,7 @@ def answerer(query: str, context: list[str], token_limits: int = 200) -> str:
     Answer:
     """
 
-    return llm_model.generate(
+    return str(llm_model.generate(
         augmented_prompt,
         max_tokens=token_limits
-    )
+    ))

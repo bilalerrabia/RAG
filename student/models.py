@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field
 from typing import List
-
+import uuid
 
 class MinimalSource(BaseModel):
     file_path: str
@@ -43,4 +43,4 @@ class StudentSearchResults(BaseModel):
 
 
 class StudentSearchResultsAndAnswer(StudentSearchResults):
-    search_results: List[MinimalAnswer]
+    search_results: List[MinimalSearchResults]

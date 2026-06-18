@@ -3,7 +3,7 @@ import tqdm
 import json
 import pathlib
 from .chunker import loader
-from .models import MinimalSearchResults, StudentSearchResults, StudentSearchResultsAndAnswer, AnsweredQuestion
+from .models import MinimalSearchResults, StudentSearchResults, AnsweredQuestion, MinimalSource
 from .indexer import indexer
 from .retriever import retrieval
 from .evaluator import evaluate
@@ -20,7 +20,7 @@ from .answerer import answerer
 
 class RAG:
 
-    def index(self, repo_path="data/raw/vllm-0.10.1", repo_to_save="data/processed", max_chunk_size=2000) -> None:
+    def index(self, repo_path: str = "data/raw/vllm-0.10.1", repo_to_save: str = "data/processed", max_chunk_size: int = 2000) -> None:
 
         indexer(repo_path, repo_to_save, max_chunk_size)
         print(f"Ingestion complete! Indices saved under {repo_to_save}")
@@ -40,7 +40,7 @@ class RAG:
 
     def search_dataset(
             self, dataset_path: str="data/datasets/UnansweredQuestions/dataset_docs_public.json",
-            k:int = 10, save_directory: str = "data/output/search_results"):
+            k:int = 10, save_directory: str = "data/output/search_results") -> None:
 
         filename = pathlib.Path(dataset_path).name
 
@@ -73,7 +73,7 @@ class RAG:
     def evaluate(self,
     student_path: str = "data/output/search_results/dataset_docs_public.json",
     right_answers_path: str = "data/datasets/AnsweredQuestions/dataset_docs_public.json",
-    k: int = 5):
+    k: int = 5) -> None:
         print(
             "Evaluation Results\n"
             "========================================\n"
@@ -95,7 +95,7 @@ class RAG:
         return texts
 
 
-    def answer(self, query:str = ""):
+    def answer(self, query:str = "") -> str:
 
         context: list[MinimalSearchResults] = self.search(query=query)
 
@@ -103,12 +103,12 @@ class RAG:
 
         answer = answerer(query, contex_strs)
 
-        return answer
+        return str(answer)
 
     def answer_dataset(self,
         student_search_results_path: str = "data/output/search_results/dataset_docs_public.json",
         save_directory: str = "data/output/search_results_and_answer"
-    ) -> list[AnsweredQuestion]:
+    ) -> None:
 
             final_result: list[AnsweredQuestion] = []
 

@@ -10,8 +10,8 @@ def evaluate(student_path: str, right_answers_path: str, k: int) -> float:
 
     gt_map = { q["question_id"]: q["sources"] for q in right_answers["rag_questions"]}
 
-    total_score = 0
-    total_questions = 0
+    total_score: float = 0
+    total_questions: int = 0
 
     for result in student_answers["search_results"]:
 

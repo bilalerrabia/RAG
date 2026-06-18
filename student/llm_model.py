@@ -44,7 +44,7 @@ class Small_LLM_Model:
 
         generated_tokens = outputs[0][inputs.input_ids.shape[-1]:]
 
-        return self.tokenizer.decode(
+        return str(self.tokenizer.decode(
             generated_tokens,
             skip_special_tokens=True
-        )
+        ))

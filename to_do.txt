@@ -9,9 +9,9 @@ exam 4
 
 
 
-
-next -> llm_model fix and understand
+next -> subject
 next -> chromadb
+next -> llm_model fix and understand
 
 
 Phase 3 — chunker.py                                                                done
