@@ -3,6 +3,12 @@ chromadb        lib
 huggingface     lib
 understand the models
 regex
+protect all
+
+
+
+
+
 
 exam 4
 
@@ -12,13 +18,15 @@ exam 4
 next -> V.6.5 Searching one dataset
 
 
+
 Phase 3 — chunker.py                                                                done
 Phase 4 — indexer.py                                                                done
 Phase 5 — retriever.py                                                              done
 Phase 6 — __main__.py        ← CLI with Fire wiring everything
-Phase 7 — evaluator.py       ← recall@k metric
+Phase 7 — evaluator.py                                                              done
               ↓
          MEASURE recall@k scores here
               ↓
 Phase 8 — answerer.py        ← Qwen/Qwen3-0.6B
 Phase 9 — ChromaDB bonus     ← only if recall@k needs boosting
+

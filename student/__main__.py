@@ -257,10 +257,14 @@
 #     print(res)
 
 import fire
+import tqdm
 import json
+import pathlib
 from .chunker import loader
+from .models import MinimalSearchResults, StudentSearchResults
 from .indexer import indexer
 from .retriever import retrieval
+from .evaluator import evaluate
 
 # index          → index the repository
 # search         → search for a single query
@@ -290,10 +294,52 @@ class RAG:
             query=query,
             k=k
         )
-        for res in results:
-            print(res)
 
-# uv run python -m student index --repo_path data/raw/vllm-0.10.1
-# uv run python -m student search "how does vLLM handle memory?" --k 5
+        return results
+
+    def search_dataset(
+            self, dataset_path: str="data/datasets/UnansweredQuestions/dataset_docs_public.json",
+            k:int = 10, save_directory: str = "data/output/search_results"):
+
+        filename = pathlib.Path(dataset_path).name
+
+
+        answers: list[MinimalSearchResults] = []
+        with open(dataset_path) as f:
+            questions = json.load(f)
+
+
+        for q in tqdm.tqdm(questions["rag_questions"], desc="answering questions"):
+            answers.append(MinimalSearchResults(
+                question_id=q["question_id"],
+                question=q["question"],
+                retrieved_sources=self.search(query=q["question"], k=k)
+                ))
+
+        pathlib.Path(save_directory).mkdir(parents=True, exist_ok=True)
+
+        res: StudentSearchResults = StudentSearchResults(
+            k=k,
+            search_results=answers
+            )
+
+        with open(f'{save_directory}/{filename}', "w") as f:
+            json.dump(res.model_dump(), f, indent=4)
+
+        print(f"Saved student_search_results to {save_directory}/{filename}")
+
+    def evaluate(self,
+    student_path: str = "data/output/search_results/dataset_docs_public.json",
+    right_answers_path: str = "data/datasets/AnsweredQuestions/dataset_docs_public.json",
+    k: int = 5):
+        print(
+            "Evaluation Results\n"
+            "========================================\n"
+            )
+        evaluate(student_path, right_answers_path, 1)
+        evaluate(student_path, right_answers_path, 3)
+        evaluate(student_path, right_answers_path, 5)
+        evaluate(student_path, right_answers_path, 10)
+        evaluate(student_path, right_answers_path, k)
 
 fire.Fire(RAG)
