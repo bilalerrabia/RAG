@@ -5,11 +5,11 @@ understand the models
 regex
 protect all open's
 
-exam 4
+exam 4(discord jalal, wats photo)
+food app
 
 
 
-next -> chromadb
 next -> subject
 next -> llm_model fix and understand
 next -> classes pydantic

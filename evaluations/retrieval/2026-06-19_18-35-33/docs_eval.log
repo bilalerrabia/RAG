@@ -1,0 +1,13 @@
+Source data/raw/vllm-0.10.1/docs/design/metrics.md[0:29946] has a length of 29946 which is more than the limit of 2000 characters
+Source data/raw/vllm-0.10.1/vllm/v1/metrics/loggers.py[0:29545] has a length of 29545 which is more than the limit of 2000 characters
+Source data/raw/vllm-0.10.1/tests/entrypoints/openai/test_metrics.py[0:12458] has a length of 12458 which is more than the limit of 2000 characters
+Source data/raw/vllm-0.10.1/benchmarks/auto_tune/README.md[0:7430] has a length of 7430 which is more than the limit of 2000 characters
+Source data/raw/vllm-0.10.1/docs/getting_started/installation/intel_gaudi.md[0:29135] has a length of 29135 which is more than the limit of 2000 characters
+Source data/raw/vllm-0.10.1/benchmarks/README.md[0:17815] has a length of 17815 which is more than the limit of 2000 characters
+Source data/raw/vllm-0.10.1/examples/offline_inference/profiling.py[0:17442] has a length of 17442 which is more than the limit of 2000 characters
+Source data/raw/vllm-0.10.1/benchmarks/auto_tune/auto_tune.sh[0:11256] has a length of 11256 which is more than the limit of 2000 characters
+Source data/raw/vllm-0.10.1/vllm/engine/metrics.py[0:23522] has a length of 23522 which is more than the limit of 2000 characters
+Source data/raw/vllm-0.10.1/vllm/v1/core/sched/interface.py[0:5860] has a length of 5860 which is more than the limit of 2000 characters
+Student data is valid: False
+Student search results are not valid
+False

@@ -41,7 +41,7 @@ def splitter_extensions_handler(
     if file_extension in extension:
         splitter = RecursiveCharacterTextSplitter.from_language(
             chunk_size=max_chunk_size,
-            chunk_overlap=max_chunk_size // 10,
+            chunk_overlap=max_chunk_size // 5,
             language=extension[file_extension],
             add_start_index=True
         )
@@ -49,7 +49,7 @@ def splitter_extensions_handler(
     else:
         splitter = RecursiveCharacterTextSplitter(
             chunk_size=max_chunk_size,
-            chunk_overlap=max_chunk_size // 10,
+            chunk_overlap=max_chunk_size // 5,
             add_start_index=True
         )
 

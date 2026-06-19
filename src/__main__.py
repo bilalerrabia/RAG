@@ -47,8 +47,6 @@ class RAG:
             index_path=index_path,
             query=query,
             k=k,
-            bm25_weight=0.8,
-            chroma_weight=0.2,
             collection=collection  # Pass it in
         )
         return results
@@ -64,13 +62,13 @@ class RAG:
         with open(dataset_path) as f:
             questions = json.load(f)
 
-
         for q in tqdm.tqdm(questions["rag_questions"], desc="searching"):
+            q_text = q.get("question_str") or q.get("question")
             answers.append(MinimalSearchResults(
                 question_id=q["question_id"],
-                question=q["question"],
-                retrieved_sources=self.search(query=q["question"], k=k)
-                ))
+                question_str=q_text,
+                retrieved_sources=self.search(query=q_text, k=k)
+            ))
 
         pathlib.Path(save_directory).mkdir(parents=True, exist_ok=True)
 
@@ -140,21 +138,18 @@ class RAG:
             results.k = questions["k"]
 
             for q in tqdm.tqdm(questions["search_results"],  desc="answering questions"):
-                # 1. Reuse the sources directly from JSON!
                 sources = [MinimalSource(**s) for s in q["retrieved_sources"]]
+                context_strs = self.get_context_texts(sources)
                 
-                # 2. Get truncated context (only top 3 files, 1500 chars each)
-                contex_strs = self.get_context_texts(sources)
-                
-                # 3. Call answerer directly (NO self.answer!)
-                ans = answerer(q["question"], contex_strs)
+                q_text = q.get("question_str") or q.get("question")
+                ans = answerer(q_text, context_strs)
                 
                 results.search_results.append(
                     MinimalAnswer(
                         retrieved_sources=q["retrieved_sources"],
                         answer=ans,
                         question_id=q["question_id"],
-                        question=q["question"]
+                        question_str=q_text
                     )
                 )
 

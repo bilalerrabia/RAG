@@ -1,0 +1,406 @@
+searching:   0%|          | 0/100 [00:00<?, ?it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [AWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s][ALoading weights: 100%|██████████| 199/199 [00:00<00:00, 18923.67it/s]
+
+Loading weights:   0%|          | 0/105 [00:00<?, ?it/s][ALoading weights: 100%|██████████| 105/105 [00:00<00:00, 19084.85it/s]
+searching:   1%|          | 1/100 [00:07<12:49,  7.78s/it]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:   2%|▏         | 2/100 [00:08<05:34,  3.41s/it]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:   3%|▎         | 3/100 [00:08<03:15,  2.02s/it]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:   4%|▍         | 4/100 [00:08<02:11,  1.37s/it]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:   5%|▌         | 5/100 [00:09<01:36,  1.02s/it]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:   6%|▌         | 6/100 [00:09<01:18,  1.20it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:   7%|▋         | 7/100 [00:10<01:08,  1.36it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:   8%|▊         | 8/100 [00:10<01:01,  1.49it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:   9%|▉         | 9/100 [00:11<00:54,  1.68it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  10%|█         | 10/100 [00:11<00:50,  1.79it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  11%|█         | 11/100 [00:12<00:49,  1.80it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  12%|█▏        | 12/100 [00:12<00:47,  1.86it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  13%|█▎        | 13/100 [00:13<00:46,  1.87it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  14%|█▍        | 14/100 [00:13<00:45,  1.87it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  15%|█▌        | 15/100 [00:14<00:45,  1.88it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  16%|█▌        | 16/100 [00:14<00:43,  1.91it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  17%|█▋        | 17/100 [00:15<00:43,  1.91it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  18%|█▊        | 18/100 [00:15<00:41,  2.00it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  19%|█▉        | 19/100 [00:16<00:41,  1.95it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  20%|██        | 20/100 [00:16<00:40,  1.95it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  21%|██        | 21/100 [00:17<00:40,  1.94it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  22%|██▏       | 22/100 [00:17<00:40,  1.93it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  23%|██▎       | 23/100 [00:18<00:40,  1.92it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  24%|██▍       | 24/100 [00:18<00:39,  1.90it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  25%|██▌       | 25/100 [00:19<00:40,  1.87it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  26%|██▌       | 26/100 [00:20<00:39,  1.87it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  27%|██▋       | 27/100 [00:20<00:38,  1.87it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  28%|██▊       | 28/100 [00:21<00:38,  1.88it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  29%|██▉       | 29/100 [00:21<00:37,  1.89it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  30%|███       | 30/100 [00:22<00:36,  1.90it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  31%|███       | 31/100 [00:22<00:36,  1.90it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  32%|███▏      | 32/100 [00:23<00:35,  1.91it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  33%|███▎      | 33/100 [00:23<00:34,  1.95it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  34%|███▍      | 34/100 [00:24<00:33,  1.96it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  35%|███▌      | 35/100 [00:24<00:32,  1.98it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  36%|███▌      | 36/100 [00:25<00:32,  1.99it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  37%|███▋      | 37/100 [00:25<00:30,  2.09it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  38%|███▊      | 38/100 [00:26<00:30,  2.03it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  39%|███▉      | 39/100 [00:26<00:30,  2.00it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  40%|████      | 40/100 [00:27<00:30,  1.98it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  41%|████      | 41/100 [00:27<00:30,  1.96it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  42%|████▏     | 42/100 [00:28<00:28,  2.07it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  43%|████▎     | 43/100 [00:28<00:27,  2.10it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  44%|████▍     | 44/100 [00:29<00:27,  2.05it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  45%|████▌     | 45/100 [00:29<00:27,  2.00it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  46%|████▌     | 46/100 [00:30<00:26,  2.03it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  47%|████▋     | 47/100 [00:30<00:26,  1.98it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  48%|████▊     | 48/100 [00:31<00:26,  1.94it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  49%|████▉     | 49/100 [00:31<00:26,  1.93it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  50%|█████     | 50/100 [00:32<00:25,  1.92it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  51%|█████     | 51/100 [00:32<00:25,  1.92it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  52%|█████▏    | 52/100 [00:33<00:24,  1.92it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  53%|█████▎    | 53/100 [00:33<00:24,  1.92it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  54%|█████▍    | 54/100 [00:34<00:23,  1.93it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  55%|█████▌    | 55/100 [00:34<00:22,  1.96it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  56%|█████▌    | 56/100 [00:35<00:22,  1.99it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  57%|█████▋    | 57/100 [00:35<00:21,  2.00it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  58%|█████▊    | 58/100 [00:36<00:19,  2.10it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  59%|█████▉    | 59/100 [00:36<00:20,  2.05it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  60%|██████    | 60/100 [00:37<00:20,  1.96it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  61%|██████    | 61/100 [00:37<00:20,  1.91it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  62%|██████▏   | 62/100 [00:38<00:20,  1.88it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  63%|██████▎   | 63/100 [00:38<00:19,  1.87it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  64%|██████▍   | 64/100 [00:39<00:19,  1.89it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  65%|██████▌   | 65/100 [00:39<00:18,  1.86it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  66%|██████▌   | 66/100 [00:40<00:18,  1.86it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  67%|██████▋   | 67/100 [00:41<00:17,  1.86it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  68%|██████▊   | 68/100 [00:41<00:17,  1.84it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  69%|██████▉   | 69/100 [00:42<00:15,  1.96it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  70%|███████   | 70/100 [00:42<00:15,  1.91it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  71%|███████   | 71/100 [00:43<00:15,  1.88it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  72%|███████▏  | 72/100 [00:43<00:14,  1.90it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  73%|███████▎  | 73/100 [00:44<00:13,  1.94it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  74%|███████▍  | 74/100 [00:44<00:13,  1.95it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  75%|███████▌  | 75/100 [00:45<00:12,  1.97it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  76%|███████▌  | 76/100 [00:45<00:11,  2.03it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  77%|███████▋  | 77/100 [00:46<00:11,  2.05it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  78%|███████▊  | 78/100 [00:46<00:10,  2.04it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  79%|███████▉  | 79/100 [00:47<00:09,  2.13it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  80%|████████  | 80/100 [00:47<00:09,  2.20it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  81%|████████  | 81/100 [00:47<00:08,  2.12it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  82%|████████▏ | 82/100 [00:48<00:08,  2.14it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  83%|████████▎ | 83/100 [00:48<00:08,  2.08it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  84%|████████▍ | 84/100 [00:49<00:07,  2.02it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  85%|████████▌ | 85/100 [00:49<00:07,  2.00it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  86%|████████▌ | 86/100 [00:50<00:07,  1.99it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  87%|████████▋ | 87/100 [00:50<00:06,  1.97it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  88%|████████▊ | 88/100 [00:51<00:06,  1.97it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  89%|████████▉ | 89/100 [00:51<00:05,  2.12it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  90%|█████████ | 90/100 [00:52<00:04,  2.09it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  91%|█████████ | 91/100 [00:52<00:04,  2.07it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  92%|█████████▏| 92/100 [00:53<00:03,  2.05it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  93%|█████████▎| 93/100 [00:53<00:03,  2.08it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  94%|█████████▍| 94/100 [00:54<00:02,  2.07it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  95%|█████████▌| 95/100 [00:54<00:02,  2.05it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  96%|█████████▌| 96/100 [00:55<00:01,  2.03it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  97%|█████████▋| 97/100 [00:55<00:01,  2.01it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  98%|█████████▊| 98/100 [00:56<00:00,  2.02it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching:  99%|█████████▉| 99/100 [00:56<00:00,  2.02it/s]
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                    [A
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
+                                                     [Asearching: 100%|██████████| 100/100 [00:57<00:00,  2.08it/s]searching: 100%|██████████| 100/100 [00:57<00:00,  1.75it/s]
