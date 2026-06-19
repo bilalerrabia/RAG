@@ -56,12 +56,20 @@ def splitter_extensions_handler(
     return splitter
 
 def loader(repo_path: str, max_chunk_size: int) -> list[ChunkData]:
-
+    VALID_EXTENSIONS = {".py", ".md", ".rst", ".txt", ".json", ".yaml", ".yml", ".toml", ".cfg", ".sh"}
+    SKIP_DIRS = {".git", "__pycache__", ".mypy_cache", "node_modules", ".venv", "build", "dist"}
+    
     data_set: list[ChunkData] = []
     files = list(pathlib.Path(repo_path).rglob("*"))
+    
     for f in tqdm.tqdm(files, desc="Chunking files"):
         if not f.is_file():
             continue
+        if any(part in SKIP_DIRS for part in f.parts):
+            continue
+        if f.suffix.lower() not in VALID_EXTENSIONS:
+            continue
+            
         try:
             data_set += splitter_func(str(f), max_chunk_size)
         except Exception:

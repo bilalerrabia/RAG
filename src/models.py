@@ -43,4 +43,4 @@ class StudentSearchResults(BaseModel):
 
 
 class StudentSearchResultsAndAnswer(StudentSearchResults):
-    search_results: List[MinimalSearchResults]
+    search_results: List[MinimalAnswer]

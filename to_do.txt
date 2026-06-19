@@ -9,7 +9,6 @@ exam 4
 
 
 
-next -> add StudentSearchResultsAndAnswer to answer_dataset
 next -> chromadb
 next -> subject
 next -> llm_model fix and understand
@@ -30,7 +29,7 @@ Phase 7 — evaluator.py                                                        
          MEASURE recall@k scores here                                               done
               ↓                                                                     done
 Phase 8 — answerer.py        ← Qwen/Qwen3-0.6B                                  80% done
-Phase 9 — ChromaDB bonus     ← only if recall@k needs boosting                   0%
+Phase 9 — ChromaDB bonus     ← only if recall@k needs boosting                  70% done
 
 
 correction:
