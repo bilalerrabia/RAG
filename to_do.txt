@@ -1,26 +1,27 @@
-book to note
 chromadb        lib
 huggingface     lib    llm_model
 understand the models
 regex
 protect all open's
 
-exam 4(discord jalal, wats photo)
 food app
 
 
 next -> refactor
+nexy ->exam 4(discord jalal, wats photo)
+next -> 10 coders
+next -> book to note
+next -> book re read call me theory
+
+
 next -> subject
-next -> llm_model fix and understand
+next -> llm_model fix and understand transformers
 next -> classes pydantic
 next -> correction_shett
-next -> moulinette
-next -> ./exam
 next -> vllm understanding
 
 
 
-10 coders
 
 
 bash ./exams/scripts/exam_retrieval.sh --student-path ../RAG --moulinette-path ./moulinette/moulinette-ubuntu
