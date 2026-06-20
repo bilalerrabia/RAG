@@ -1,9 +1,16 @@
 import bm25s
 import json
 import re
+import torch
 from .models import MinimalSource
 from functools import lru_cache
+from sentence_transformers import CrossEncoder
 from collections import Counter
+
+# ==========================================================
+# BONUS: 3-TIER CACHING SYSTEM
+# ==========================================================
+_QUERY_CACHE: dict = {}
 
 @lru_cache(maxsize=256)
 def get_file_content(file_path: str) -> str:
@@ -11,58 +18,33 @@ def get_file_content(file_path: str) -> str:
         return f.read()
 
 @lru_cache(maxsize=1)
-def load_bm25_index(index_path: str):
+def load_bm25_index(index_path: str) -> bm25s.BM25:
     return bm25s.BM25.load(f"{index_path}/bm25_index")
 
 @lru_cache(maxsize=1)
-def load_chunks(chunks_path: str):
+def load_chunks(chunks_path: str) -> list:
     with open(chunks_path, encoding="utf-8") as f:
         return json.load(f)
 
+# Load the fast re-ranker
+@lru_cache(maxsize=1)
+def get_reranker():
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    return CrossEncoder('cross-encoder/ms-marco-MiniLM-L-6-v2', device=device, max_length=512)
+# ==========================================================
+
 def preprocess_text(text: str) -> str:
+    """Preprocesses text by splitting snake_case and camelCase."""
     text = text.replace('_', ' ')
     text = re.sub(r'([a-z0-9])([A-Z])', r'\1 \2', text)
     return text.lower()
 
-def expand_query_prf(query: str, bm25_index, chunks, top_n=3, terms=5) -> str:
-    """
-    MANDATORY Query Expansion Bonus: Pseudo-Relevance Feedback.
-    Extracts top keywords from the initial search results to expand the query.
-    """
-    processed_query = preprocess_text(query)
-    q_token = bm25s.tokenize([processed_query])
-    
-    # 1. Quick initial search
-    results, _ = bm25_index.retrieve(q_token, k=top_n)
-    
-    # 2. Gather text from top chunks
-    feedback_text = " ".join([chunks[idx]["text"] for idx in results[0]])
-    feedback_text = preprocess_text(feedback_text)
-    
-    # 3. Extract most frequent words (excluding original query words)
-    words = re.findall(r'\b[a-zA-Z0-9]+\b', feedback_text)
-    counts = Counter(words)
-    query_words = set(re.findall(r'\b[a-zA-Z0-9]+\b', processed_query))
-    
-    expansion_terms = []
-    for word, count in counts.most_common():
-        if word not in query_words and len(word) > 2:
-            expansion_terms.append(word)
-        if len(expansion_terms) == terms:
-            break
-            
-    if not expansion_terms:
-        return query
-        
-    return query + " " + " ".join(expansion_terms)
-
 def search_bm25(chunks_path: str, index_path: str, query: str, k: int) -> list[tuple[MinimalSource, float]]:
+    """Searches the BM25 index."""
     index = load_bm25_index(index_path)
     chunks = load_chunks(chunks_path)
-    
     processed_query = preprocess_text(query)
     q_token = bm25s.tokenize([processed_query])
-    
     results, scores = index.retrieve(q_token, k=k)
 
     results_list: list[tuple[MinimalSource, float]] = []
@@ -77,6 +59,7 @@ def search_bm25(chunks_path: str, index_path: str, query: str, k: int) -> list[t
     return results_list
 
 def search_chromadb(collection, query: str, k: int) -> list[tuple[MinimalSource, float]]:
+    """Searches the ChromaDB index."""
     results = collection.query(query_texts=[query], n_results=k)
     sources: list[tuple[MinimalSource, float]] = []
     for metadata, distance in zip(results["metadatas"][0], results["distances"][0]):
@@ -89,6 +72,7 @@ def search_chromadb(collection, query: str, k: int) -> list[tuple[MinimalSource,
     return sources
 
 def normalize(scores: list[float]) -> list[float]:
+    """Normalizes a list of scores to range [0, 1]."""
     if not scores:
         return []
     min_score = min(scores)
@@ -96,48 +80,16 @@ def normalize(scores: list[float]) -> list[float]:
     if max_score == min_score:
         return [1.0 for _ in scores]
     return [(s - min_score) / (max_score - min_score) for s in scores]
-import bm25s
-import json
-import re
-from .models import MinimalSource
-from functools import lru_cache
-from collections import Counter
-
-# 1. QUERY CACHE DICTIONARY
-_QUERY_CACHE = {}
-
-@lru_cache(maxsize=256)
-def get_file_content(file_path: str) -> str:
-    with open(file_path, encoding="utf-8", errors="ignore") as f:
-        return f.read()
-
-@lru_cache(maxsize=1)
-def load_bm25_index(index_path: str):
-    return bm25s.BM25.load(f"{index_path}/bm25_index")
-
-@lru_cache(maxsize=1)
-def load_chunks(chunks_path: str):
-    with open(chunks_path, encoding="utf-8") as f:
-        return json.load(f)
-
-# ... (keep preprocess_text, expand_query_prf, search_bm25, search_chromadb, normalize) ...
-
-def hybrid_search(query: str, k: int, chunks_path, index_path, collection,
-                   bm25_weight=0.6, chroma_weight=0.4) -> list[MinimalSource]:
-
-    # 2. CHECK QUERY CACHE FIRST
+def hybrid_search(query: str, k: int, chunks_path: str, index_path: str, collection,
+                   bm25_weight: float = 0.6, chroma_weight: float = 0.4) -> list[MinimalSource]:
+    """Performs hybrid search using BM25 and ChromaDB, followed by Cross-Encoder Re-ranking."""
+    # --- TIER 1: QUERY CACHE CHECK ---
     cache_key = (query, k)
     if cache_key in _QUERY_CACHE:
         return _QUERY_CACHE[cache_key]
 
-    # --- MANDATORY QUERY EXPANSION (PRF) ---
-    bm25_index = load_bm25_index(index_path)
-    chunks = load_chunks(chunks_path)
-    expanded_query = expand_query_prf(query, bm25_index, chunks)
-    
     candidates = k * 5
-
-    bm25_results = search_bm25(query=expanded_query, k=candidates, index_path=index_path, chunks_path=chunks_path)
+    bm25_results = search_bm25(query=query, k=candidates, index_path=index_path, chunks_path=chunks_path)
     
     try:
         chroma_results = search_chromadb(collection=collection, query=query, k=candidates)
@@ -150,7 +102,6 @@ def hybrid_search(query: str, k: int, chunks_path, index_path, collection,
 
     score_map = {}
     source_map = {}
-
     for (source, _), norm_score in zip(bm25_results, bm25_norm):
         key = (source.file_path, source.first_character_index, source.last_character_index)
         score_map[key] = bm25_weight * norm_score
@@ -166,7 +117,8 @@ def hybrid_search(query: str, k: int, chunks_path, index_path, collection,
 
     sorted_chunks = sorted(score_map, key=lambda k: score_map[k], reverse=True)
 
-    unique_chunks = []
+    # Deduplicate overlapping chunks
+    unique_chunks: list = []
     for key in sorted_chunks:
         source = source_map[key]
         is_dup = False
@@ -179,16 +131,51 @@ def hybrid_search(query: str, k: int, chunks_path, index_path, collection,
                     break
         if not is_dup:
             unique_chunks.append(source)
-        if len(unique_chunks) == k:
+        if len(unique_chunks) == 15:  # Take top 15 unique for re-ranking
             break
 
-    final_chunks = unique_chunks[:k]
+    # --- CROSS-ENCODER RE-RANKING ---
+    rerank_candidates = unique_chunks[:15]
+    reranker = get_reranker()
+    pairs = []
+    valid_sources = []
+    
+    for source in rerank_candidates:
+        try:
+            content = get_file_content(source.file_path)
+            # Pass 512 chars to the re-ranker for speed
+            text = content[source.first_character_index:source.last_character_index][:512]
+            pairs.append((query, text))
+            valid_sources.append(source)
+        except Exception:
+            continue
+            
+    if pairs:
+        r_scores = reranker.predict(pairs, batch_size=16)
+        min_r = min(r_scores)
+        max_r = max(r_scores)
+        if max_r > min_r:
+            norm_r = [(r - min_r) / (max_r - min_r) for r in r_scores]
+        else:
+            norm_r = [1.0 for _ in r_scores]
+            
+        blended = []
+        for source, r_score in zip(valid_sources, norm_r):
+            h_score = score_map.get((source.file_path, source.first_character_index, source.last_character_index), 0)
+            # 50% Re-ranker + 50% Hybrid (Protects code chunks!)
+            final_score = 0.5 * r_score + 0.5 * h_score
+            blended.append((source, final_score))
+            
+        blended.sort(key=lambda x: x[1], reverse=True)
+        final_chunks = [s for s, _ in blended[:k]]
+    else:
+        final_chunks = rerank_candidates[:k]
 
+    # Smart Expansion to 2000 chars
     final_sources = []
     for source in final_chunks:
         content = get_file_content(source.file_path)
         file_len = len(content)
-        
         first = source.first_character_index
         last = source.last_character_index
         
@@ -196,15 +183,12 @@ def hybrid_search(query: str, k: int, chunks_path, index_path, collection,
             room = 2000 - (last - first)
             expand_left = room // 2
             expand_right = room - expand_left
-            
             new_first = max(0, first - expand_left)
             new_last = min(file_len, last + expand_right)
-            
             if new_first == 0:
                 new_last = min(file_len, new_last + (expand_left - first))
             if new_last == file_len:
                 new_first = max(0, new_first - (expand_right - (file_len - last)))
-                
             first = new_first
             last = new_last
         
@@ -214,7 +198,6 @@ def hybrid_search(query: str, k: int, chunks_path, index_path, collection,
             last_character_index=last
         ))
 
-    # 3. SAVE RESULT TO QUERY CACHE BEFORE RETURNING
+    # --- TIER 1: QUERY CACHE STORE ---
     _QUERY_CACHE[cache_key] = final_sources
-
     return final_sources

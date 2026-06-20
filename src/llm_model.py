@@ -1,7 +1,10 @@
+"""LLM model wrapper for answer generation."""
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
+
 class Small_LLM_Model:
+    """Wrapper for the Qwen3-0.6B model."""
     def __init__(self, model_name: str = "Qwen/Qwen3-0.6B"):
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.model = AutoModelForCausalLM.from_pretrained(
@@ -9,23 +12,21 @@ class Small_LLM_Model:
             torch_dtype="auto",
             device_map="auto"
         )
-        # Ensure model is in eval mode (disables dropout, etc.)
         self.model.eval()
 
-    @torch.inference_mode() # THIS MAKES IT MUCH FASTER
+    @torch.inference_mode()
     def generate(self, prompt: str, max_tokens: int = 150) -> str:
+        """Generates a response from the LLM."""
         messages = [
             {"role": "system", "content": "You are a code assistant. Answer concisely using only the context."},
             {"role": "user", "content": prompt}
         ]
-
         text = self.tokenizer.apply_chat_template(
             messages,
             tokenize=False,
             add_generation_prompt=True,
             enable_thinking=False
         )
-
         inputs = self.tokenizer(
             text,
             return_tensors="pt",
@@ -36,10 +37,9 @@ class Small_LLM_Model:
         outputs = self.model.generate(
             **inputs,
             max_new_tokens=max_tokens,
-            do_sample=False,      # Greedy = Fastest
+            do_sample=False,
             use_cache=True,
             pad_token_id=self.tokenizer.eos_token_id,
         )
-
         generated_tokens = outputs[0][inputs.input_ids.shape[-1]:]
         return str(self.tokenizer.decode(generated_tokens, skip_special_tokens=True))
