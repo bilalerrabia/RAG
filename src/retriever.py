@@ -3,6 +3,7 @@ import json
 import re
 from .models import MinimalSource
 from functools import lru_cache
+from collections import Counter
 
 @lru_cache(maxsize=256)
 def get_file_content(file_path: str) -> str:
@@ -23,11 +24,42 @@ def preprocess_text(text: str) -> str:
     text = re.sub(r'([a-z0-9])([A-Z])', r'\1 \2', text)
     return text.lower()
 
+def expand_query_prf(query: str, bm25_index, chunks, top_n=3, terms=5) -> str:
+    """
+    MANDATORY Query Expansion Bonus: Pseudo-Relevance Feedback.
+    Extracts top keywords from the initial search results to expand the query.
+    """
+    processed_query = preprocess_text(query)
+    q_token = bm25s.tokenize([processed_query])
+    
+    # 1. Quick initial search
+    results, _ = bm25_index.retrieve(q_token, k=top_n)
+    
+    # 2. Gather text from top chunks
+    feedback_text = " ".join([chunks[idx]["text"] for idx in results[0]])
+    feedback_text = preprocess_text(feedback_text)
+    
+    # 3. Extract most frequent words (excluding original query words)
+    words = re.findall(r'\b[a-zA-Z0-9]+\b', feedback_text)
+    counts = Counter(words)
+    query_words = set(re.findall(r'\b[a-zA-Z0-9]+\b', processed_query))
+    
+    expansion_terms = []
+    for word, count in counts.most_common():
+        if word not in query_words and len(word) > 2:
+            expansion_terms.append(word)
+        if len(expansion_terms) == terms:
+            break
+            
+    if not expansion_terms:
+        return query
+        
+    return query + " " + " ".join(expansion_terms)
+
 def search_bm25(chunks_path: str, index_path: str, query: str, k: int) -> list[tuple[MinimalSource, float]]:
     index = load_bm25_index(index_path)
     chunks = load_chunks(chunks_path)
     
-    # BM25 uses the processed query
     processed_query = preprocess_text(query)
     q_token = bm25s.tokenize([processed_query])
     
@@ -45,7 +77,6 @@ def search_bm25(chunks_path: str, index_path: str, query: str, k: int) -> list[t
     return results_list
 
 def search_chromadb(collection, query: str, k: int) -> list[tuple[MinimalSource, float]]:
-    # ChromaDB uses the RAW query (important for neural embeddings!)
     results = collection.query(query_texts=[query], n_results=k)
     sources: list[tuple[MinimalSource, float]] = []
     for metadata, distance in zip(results["metadatas"][0], results["distances"][0]):
@@ -65,15 +96,49 @@ def normalize(scores: list[float]) -> list[float]:
     if max_score == min_score:
         return [1.0 for _ in scores]
     return [(s - min_score) / (max_score - min_score) for s in scores]
+import bm25s
+import json
+import re
+from .models import MinimalSource
+from functools import lru_cache
+from collections import Counter
+
+# 1. QUERY CACHE DICTIONARY
+_QUERY_CACHE = {}
+
+@lru_cache(maxsize=256)
+def get_file_content(file_path: str) -> str:
+    with open(file_path, encoding="utf-8", errors="ignore") as f:
+        return f.read()
+
+@lru_cache(maxsize=1)
+def load_bm25_index(index_path: str):
+    return bm25s.BM25.load(f"{index_path}/bm25_index")
+
+@lru_cache(maxsize=1)
+def load_chunks(chunks_path: str):
+    with open(chunks_path, encoding="utf-8") as f:
+        return json.load(f)
+
+# ... (keep preprocess_text, expand_query_prf, search_bm25, search_chromadb, normalize) ...
 
 def hybrid_search(query: str, k: int, chunks_path, index_path, collection,
                    bm25_weight=0.6, chroma_weight=0.4) -> list[MinimalSource]:
 
+    # 2. CHECK QUERY CACHE FIRST
+    cache_key = (query, k)
+    if cache_key in _QUERY_CACHE:
+        return _QUERY_CACHE[cache_key]
+
+    # --- MANDATORY QUERY EXPANSION (PRF) ---
+    bm25_index = load_bm25_index(index_path)
+    chunks = load_chunks(chunks_path)
+    expanded_query = expand_query_prf(query, bm25_index, chunks)
+    
     candidates = k * 5
 
-    bm25_results = search_bm25(query=query, k=candidates, index_path=index_path, chunks_path=chunks_path)
+    bm25_results = search_bm25(query=expanded_query, k=candidates, index_path=index_path, chunks_path=chunks_path)
     
-    # Wrap Chroma in try/except in case it fails to load
     try:
         chroma_results = search_chromadb(collection=collection, query=query, k=candidates)
         chroma_norm = [1 - s for s in normalize([score for (_, score) in chroma_results])]
@@ -101,7 +166,6 @@ def hybrid_search(query: str, k: int, chunks_path, index_path, collection,
 
     sorted_chunks = sorted(score_map, key=lambda k: score_map[k], reverse=True)
 
-    # Deduplicate overlapping chunks
     unique_chunks = []
     for key in sorted_chunks:
         source = source_map[key]
@@ -120,7 +184,6 @@ def hybrid_search(query: str, k: int, chunks_path, index_path, collection,
 
     final_chunks = unique_chunks[:k]
 
-    # Smart Expansion to 2000 chars
     final_sources = []
     for source in final_chunks:
         content = get_file_content(source.file_path)
@@ -150,5 +213,8 @@ def hybrid_search(query: str, k: int, chunks_path, index_path, collection,
             first_character_index=first,
             last_character_index=last
         ))
+
+    # 3. SAVE RESULT TO QUERY CACHE BEFORE RETURNING
+    _QUERY_CACHE[cache_key] = final_sources
 
     return final_sources

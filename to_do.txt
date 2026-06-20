@@ -43,6 +43,7 @@ correction:
 
      Hybrid retrieval combining BM25 with semantic embeddings
 
-     Query expansion implemented (e.g., synonym expansion, query rewriting) (bonus).
-
      Caching implemented (index caching, query caching, etc.) (bonus)
+
+
+bash ./exams/scripts/exam_retrieval.sh --student-path ../RAG --moulinette-path ./moulinette/moulinette-ubuntu
