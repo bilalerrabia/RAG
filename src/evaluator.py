@@ -1,20 +1,15 @@
 """Handles evaluation of search results."""
 import json
 
-
 def evaluate(student_path: str, right_answers_path: str, k: int) -> float:
-    """Evaluates student answers against right answers using Recall@k."""
     with open(student_path, encoding='utf-8') as f:
         student_answers = json.load(f)
-
     with open(right_answers_path, encoding='utf-8') as f:
         right_answers = json.load(f)
 
     gt_map = {q["question_id"]: q["sources"] for q in right_answers["rag_questions"]}
 
-    total_score: float = 0.0
-    total_questions: int = 0
-
+    total_score, total_questions = 0.0, 0
     for result in student_answers["search_results"]:
         q_id = result["question_id"]
         retrieved = result["retrieved_sources"][:k]
@@ -37,20 +32,13 @@ def evaluate(student_path: str, right_answers_path: str, k: int) -> float:
                     continue
 
                 correct_length = correct_source["last_character_index"] - correct_source["first_character_index"]
-                overlap_ratio = overlap_length / correct_length
-
-                if overlap_ratio >= 0.05:
+                if (overlap_length / correct_length) >= 0.05:
                     found += 1
                     break
 
-        question_score = found / len(correct_sources)
-        total_score += question_score
+        total_score += found / len(correct_sources)
         total_questions += 1
 
-    if total_questions == 0:
-        print(f"Recall@{k} = 0 (no valid questions)")
-        return 0.0
-    
-    recall: float = total_score / total_questions
+    recall = total_score / total_questions if total_questions > 0 else 0.0
     print(f"recall@{k} score = {recall}")
     return recall

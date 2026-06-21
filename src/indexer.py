@@ -1,4 +1,4 @@
-"""Handles indexing of documents for the RAG pipeline."""
+"""Handles indexing of documents."""
 from .chunker import loader
 from .models import ChunkData
 import bm25s
@@ -9,51 +9,38 @@ import re
 import chromadb
 from sentence_transformers import SentenceTransformer
 
-
 def preprocess_text(text: str) -> str:
-    """Preprocesses text by splitting snake_case and camelCase for BM25."""
+    """Splits snake_case and camelCase to help BM25 understand code."""
     text = text.replace('_', ' ')
     text = re.sub(r'([a-z0-9])([A-Z])', r'\1 \2', text)
     return text.lower()
-
 
 def indexer(repo_path: str, repo_to_save: str, max_chunk_size: int) -> None:
     """Indexes the repository using BM25 and ChromaDB."""
     data_set: list[ChunkData] = loader(repo_path, max_chunk_size)
 
-    raw_corpus = [data.text for data in data_set]
-    processed_corpus = [preprocess_text(data.text) for data in tqdm.tqdm(data_set, desc="Processing corpus")]
+    raw_corpus = [d.text for d in data_set]
+    processed_corpus = [preprocess_text(d.text) for d in data_set]
 
-    # Fast ChromaDB Indexing
+    # 1. ChromaDB Indexing (Fast batched embeddings)
     client = chromadb.PersistentClient(path=repo_to_save)
     collection = client.get_or_create_collection(name="vllm_chunks")
     
     print("Loading embedding model...")
     embedder = SentenceTransformer('all-MiniLM-L6-v2')
-    
-    print("Pre-computing embeddings (fast mode)...")
     embeddings = embedder.encode(raw_corpus, batch_size=128, show_progress_bar=True, convert_to_numpy=True)
 
     BATCH_SIZE = 500
-    for i in tqdm.tqdm(range(0, len(data_set), BATCH_SIZE), desc="chromadb indexing"):
+    for i in tqdm.tqdm(range(0, len(data_set), BATCH_SIZE), desc="ChromaDB Indexing"):
         batch = data_set[i : i + BATCH_SIZE]
-        ids = [str(i + j) for j in range(len(batch))]
-        metadatas = [
-            {
-                "file_path": chunk.file_path,
-                "first_character_index": chunk.first_character_index,
-                "last_character_index": chunk.last_character_index
-            }
-            for chunk in batch
-        ]
         collection.add(
-            ids=ids,
-            documents=[chunk.text for chunk in batch],
-            metadatas=metadatas,
+            ids=[str(i + j) for j in range(len(batch))],
+            documents=[d.text for d in batch],
+            metadatas=[{"file_path": d.file_path, "first_character_index": d.first_character_index, "last_character_index": d.last_character_index} for d in batch],
             embeddings=embeddings[i : i + BATCH_SIZE].tolist()
         )
 
-    # Fast BM25 Indexing
+    # 2. BM25 Indexing
     corpus_tokens = bm25s.tokenize(processed_corpus)
     retriever = bm25s.BM25()
     retriever.index(corpus_tokens)
@@ -62,4 +49,4 @@ def indexer(repo_path: str, repo_to_save: str, max_chunk_size: int) -> None:
     retriever.save(f"{repo_to_save}/bm25_index")
 
     with open(f"{repo_to_save}/chunks.json", "w", encoding="utf-8") as f:
-        json.dump([chunk.model_dump() for chunk in data_set], f)
+        json.dump([d.model_dump() for d in data_set], f)
