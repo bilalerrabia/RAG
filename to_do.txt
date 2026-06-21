@@ -1,4 +1,3 @@
-chromadb        lib
 huggingface     lib    llm_model
 understand the models
 regex
@@ -20,9 +19,17 @@ next -> readme
 
 next -> llm_model fix and understand transformers
 next -> classes pydantic
+next -> RecursiveCharacterTextSplitter
 
-
-
-
+next -> chroma lib(
+    client = chromadb.PersistentClient(path=repo_to_save)
+    collection = client.get_or_create_collection(name="vllm_chunks")
+    collection.add
+    client.get_collection(name="vllm_chunks")
+    results = collection.query(query_embeddings=query_embedding, n_results=k)
+    )
+next -> SentenceTransformer
+next -> tqdm.tqdm how its work
+next -> pathlib
 
 bash ./exams/scripts/exam_retrieval.sh --student-path ../RAG --moulinette-path ./moulinette/moulinette-ubuntu

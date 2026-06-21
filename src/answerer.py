@@ -10,10 +10,10 @@ def get_llm() -> Small_LLM_Model:
 def answerer(query: str, context: list[str], token_limit: int = 150) -> str:
     """Generates an answer using the LLM."""
     llm = get_llm()
-    context_str = "\n\n".join(context)
+    # context_str = "\n\n".join(context)
     augmented_prompt = f"""
     Context:
-    {context_str}
+    {context}
 
     Question:
     {query}

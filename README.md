@@ -68,6 +68,10 @@ We implement a **Hybrid Search** mechanism combining lexical and semantic search
     3.  *Query Caching*: A dictionary stores results of previous queries, returning them in `O(1)` time if duplicated.
 *   **Lazy LLM Loading**: The LLM is only loaded into memory when the `answer` or `answer_dataset` commands are executed, keeping the cold-start latency for search-only operations under 60 seconds.
 
+**Why use `SentenceTransformer` alongside ChromaDB?** 
+While ChromaDB has built-in embedding capabilities, we explicitly use the `SentenceTransformer` library to pre-compute embeddings before passing them to ChromaDB. ChromaDB's native ONNX embedding wrapper is notoriously inefficient for large codebases; it uses small internal batch sizes (risking the 5-minute indexing limit), lacks efficient RAM caching during queries (risking the 90-second retrieval limit), and truncates text at 256 tokens. By bypassing it and using `SentenceTransformer` with a batch size of 128, we reduce indexing time to under 4 minutes. Furthermore, we can cache the `SentenceTransformer` model in RAM using `@lru_cache`, ensuring query vectorization is nearly instant and eliminating the verbose terminal log spam caused by ChromaDB's internal model loading.
+
+**Code-Aware Tokenization:** To improve BM25 retrieval on code queries, we use a regex preprocessor to split `camelCase` and `snake_case` identifiers into separate words (e.g., transforming `getMetrics` into `get metrics`). This prevents BM25 from treating complex function names as a single, unknown word, allowing it to perfectly match specific code keywords from user queries and significantly boosting code recall.
 ---
 
 ## Challenges Faced

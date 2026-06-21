@@ -5,16 +5,19 @@ import tqdm
 import json
 import pathlib
 from functools import lru_cache
-from .models import MinimalSearchResults, StudentSearchResults, MinimalSource, StudentSearchResultsAndAnswer, MinimalAnswer
+from .models import MinimalSearchResults, StudentSearchResults
+from .models import MinimalSource, StudentSearchResultsAndAnswer, MinimalAnswer
 from .indexer import indexer
 from .retriever import hybrid_search
 from .evaluator import evaluate
 from .answerer import answerer
 
-@lru_cache(maxsize=1)
+
+@lru_cache()
 def get_chroma_collection():
     client = chromadb.PersistentClient(path="data/processed")
     return client.get_collection(name="vllm_chunks")
+
 
 class RAG:
     def index(self, repo_path: str = "data/raw/vllm-0.10.1", repo_to_save: str = "data/processed", max_chunk_size: int = 2000) -> None:
@@ -24,30 +27,34 @@ class RAG:
         except Exception as e:
             print(f"Error during indexing: {e}")
 
+
     def search(self, query: str, chunks_path: str = "data/processed/chunks.json", index_path: str = "data/processed", k: int = 10) -> list[MinimalSource]:
         collection = get_chroma_collection()
         return hybrid_search(
             chunks_path=chunks_path, index_path=index_path, query=query, k=k, collection=collection
         )
 
+
     def search_dataset(self, dataset_path: str = "data/datasets/UnansweredQuestions/dataset_docs_public.json", k: int = 10, save_directory: str = "data/output/search_results") -> None:
         filename = pathlib.Path(dataset_path).name
         answers: list[MinimalSearchResults] = []
-        with open(dataset_path, encoding="utf-8") as f:
+        with open(dataset_path) as f:
             questions = json.load(f)
 
         for q in tqdm.tqdm(questions["rag_questions"], desc="searching"):
             q_text = q.get("question_str") or q.get("question")
             answers.append(MinimalSearchResults(
-                question_id=q["question_id"], question_str=q_text,
+                question_id=q["question_id"],
+                question_str=q_text,
                 retrieved_sources=self.search(query=q_text, k=k)
             ))
 
         pathlib.Path(save_directory).mkdir(parents=True, exist_ok=True)
-        res = StudentSearchResults(k=k, search_results=answers)
-        with open(f'{save_directory}/{filename}', "w", encoding="utf-8") as f:
+        res: StudentSearchResults = StudentSearchResults(k=k, search_results=answers)
+        with open(f'{save_directory}/{filename}', "w") as f:
             json.dump(res.model_dump(), f, indent=4)
         print(f"Saved student_search_results to {save_directory}/{filename}")
+
 
     def evaluate(self, student_path: str = "data/output/search_results/dataset_docs_public.json", right_answers_path: str = "data/datasets/AnsweredQuestions/dataset_docs_public.json", k: int = 5) -> None:
         print("Evaluation Results\n========================================\n")
@@ -58,25 +65,21 @@ class RAG:
         evaluate(student_path, right_answers_path, k)
 
     @staticmethod
-    def get_context_texts(sources: list[MinimalSource]) -> list[str]:
-        texts: list[str] = []
-        for source in sources[:3]:
-            try:
-                with open(source.file_path, encoding="utf-8", errors="ignore") as f:
-                    content = f.read()
-                texts.append(content[:1500])
-            except Exception:
-                texts.append("")
-        return texts
+    def get_context_texts(sources: list[MinimalSource]) -> str:
+
+        with open(sources[0].file_path) as f:
+            content = f.read()
+        return content[sources[0].first_character_index:1500 + sources[0].last_character_index]
+
 
     def answer(self, query: str = "", k: int = 10) -> str:
         context = self.search(query=query, k=k)
         contex_strs = self.get_context_texts(context)
-        return answerer(query, contex_strs)
+        return answerer(query, context)
 
     def answer_dataset(self, student_search_results_path: str = "data/output/search_results/dataset_docs_public.json", save_directory: str = "data/output/search_results_and_answer") -> None:
         results = StudentSearchResultsAndAnswer(search_results=[], k=0)
-        with open(student_search_results_path, encoding="utf-8") as f:
+        with open(student_search_results_path) as f:
             questions = json.load(f)
         results.k = questions["k"]
 
@@ -94,7 +97,7 @@ class RAG:
 
         pathlib.Path(save_directory).mkdir(parents=True, exist_ok=True)
         filename = pathlib.Path(student_search_results_path).name
-        with open(f"{save_directory}/{filename}", "w", encoding="utf-8") as f:
+        with open(f"{save_directory}/{filename}", "w") as f:
             json.dump(results.model_dump(), f, indent=4)
         print(f"Saved student_search_results_and_answer to {save_directory}/{filename}")
 
