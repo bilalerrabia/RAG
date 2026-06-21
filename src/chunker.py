@@ -11,12 +11,16 @@ SKIP_DIRS = {".git", "__pycache__", ".mypy_cache", ".venv"}
 def splitter_func(file_path: str, max_chunk_size: int) -> list[ChunkData]:
     """Splits a file into chunks based on its extension."""
     ext = pathlib.Path(file_path).suffix
-    lang_map = {".py": Language.PYTHON, ".md": Language.MARKDOWN, ".rst": Language.RST}
+    lang_map = {
+        ".py": Language.PYTHON,
+        ".md": Language.MARKDOWN,
+        ".rst": Language.RST
+        }
 
     if ext in lang_map:
         splitter = RecursiveCharacterTextSplitter.from_language(
             chunk_size=max_chunk_size,
-            chunk_overlap=max_chunk_size // 5, 
+            chunk_overlap=max_chunk_size // 5,
             language=lang_map[ext],
             add_start_index=True
         )

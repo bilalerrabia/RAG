@@ -1,19 +1,27 @@
 """Handles evaluation of search results."""
 import json
+from typing import Any
 
-def is_found(retrieved: dict, correct: dict) -> bool:
-    """Checks if a retrieved source overlaps a correct source by at least 5%."""
+
+def is_found(retrieved: Any, correct: Any) -> Any:
+    """Checks if a retrieved source overlaps a
+    correct source by at least 5%."""
     if retrieved["file_path"] != correct["file_path"]:
         return False
-        
-    overlap_start = max(retrieved["first_character_index"], correct["first_character_index"])
-    overlap_end = min(retrieved["last_character_index"], correct["last_character_index"])
+
+    overlap_start = max(
+        retrieved["first_character_index"],
+        correct["first_character_index"])
+    overlap_end = min(
+        retrieved["last_character_index"],
+        correct["last_character_index"])
     overlap_length = overlap_end - overlap_start
-    
+
     if overlap_length <= 0:
         return False
-        
-    correct_length = correct["last_character_index"] - correct["first_character_index"]
+
+    correct_length = (
+        correct["last_character_index"] - correct["first_character_index"])
     return (overlap_length / correct_length) >= 0.05
 
 
@@ -25,7 +33,9 @@ def evaluate(student_path: str, right_answers_path: str, k: int) -> float:
         right_answers = json.load(f)
 
     # Map question_id to its correct sources
-    gt_map = {q["question_id"]: q["sources"] for q in right_answers["rag_questions"]}
+    gt_map = {
+        q["question_id"]: q["sources"] for q in
+        right_answers["rag_questions"]}
 
     total_score = 0.0
     valid_questions = 0
@@ -39,7 +49,7 @@ def evaluate(student_path: str, right_answers_path: str, k: int) -> float:
 
         # Count how many correct sources were found in the retrieved list
         found = sum(
-            1 for c_src in correct_sources 
+            1 for c_src in correct_sources
             if any(is_found(r_src, c_src) for r_src in retrieved)
         )
 

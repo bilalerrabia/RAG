@@ -2,9 +2,11 @@
 import bm25s
 import json
 import re
+from typing import Any
 from .models import MinimalSource
 from functools import lru_cache
 from sentence_transformers import SentenceTransformer
+from chromadb.api.models.Collection import Collection
 
 
 @lru_cache()
@@ -13,7 +15,7 @@ def load_bm25_index(index_path: str) -> bm25s.BM25:
 
 
 @lru_cache()
-def load_chunks(chunks_path: str) -> list:
+def load_chunks(chunks_path: str) -> Any:
     with open(chunks_path) as f:
         return json.load(f)
 
@@ -29,7 +31,12 @@ def preprocess_text(text: str) -> str:
     return text.lower()
 
 
-def search_bm25(chunks_path: str, index_path: str, query: str, k: int) -> list[tuple[MinimalSource, float]]:
+def search_bm25(
+    chunks_path: str,
+    index_path: str,
+    query: str,
+    k: int
+) -> list[tuple[MinimalSource, float]]:
     collection = load_bm25_index(index_path)
     chunks = load_chunks(chunks_path)
 
@@ -49,13 +56,17 @@ def search_bm25(chunks_path: str, index_path: str, query: str, k: int) -> list[t
     return results_list
 
 
-def search_chromadb(collection, query: str, k: int) -> list[tuple[MinimalSource, float]]:
+def search_chromadb(
+    collection: Collection,
+    query: str, k: int
+) -> list[tuple[MinimalSource, float]]:
     embedder = get_embedder()
     query_embedding = embedder.encode([query], convert_to_numpy=True).tolist()
 
     results = collection.query(query_embeddings=query_embedding, n_results=k)
     sources: list[tuple[MinimalSource, float]] = []
-    for metadata, distance in zip(results["metadatas"][0], results["distances"][0]):
+    for metadata, distance in zip(
+            results["metadatas"][0], results["distances"][0]):
         source = MinimalSource(
             file_path=metadata["file_path"],
             first_character_index=metadata["first_character_index"],
@@ -74,26 +85,44 @@ def mini_softMax(scores: list[float]) -> list[float]:
     return [(s - min_s) / (max_s - min_s) for s in scores]
 
 
-def hybrid_search(query: str, k: int, chunks_path: str, index_path: str, collection,
-                bm25_weight: float = 0.8, chroma_weight: float = 0.2) -> list[MinimalSource]:
+def hybrid_search(
+    query: str,
+    k: int,
+    chunks_path: str,
+    index_path: str,
+    collection: Collection,
+    bm25_weight: float = 0.8,
+    chroma_weight: float = 0.2
+) -> list[MinimalSource]:
     """Performs simple hybrid search and merges results."""
 
     # 1. Fetch from both retrievers
-    bm25_results = search_bm25(query=query, k=k*5, index_path=index_path, chunks_path=chunks_path)
+    bm25_results = search_bm25(
+        query=query, k=k*5, index_path=index_path,
+        chunks_path=chunks_path)
     chroma_results = search_chromadb(collection=collection, query=query, k=k*5)
 
     bm25_norm = mini_softMax([score for (_, score) in bm25_results])
-    chroma_norm = [1 - s for s in mini_softMax([score for (_, score) in chroma_results])]
+    chroma_norm = [1 - s for s in mini_softMax(
+        [score for (_, score) in chroma_results])]
 
     # 2. Merge into a dictionary (key -> [score, source])
     merged = {}
 
     for (source, _), score in zip(bm25_results, bm25_norm):
-        key = (source.file_path, source.first_character_index, source.last_character_index)
+        key = (
+            source.file_path,
+            source.first_character_index,
+            source.last_character_index
+            )
         merged[key] = [bm25_weight * score, source]
 
     for (source, _), score in zip(chroma_results, chroma_norm):
-        key = (source.file_path, source.first_character_index, source.last_character_index)
+        key = (
+            source.file_path,
+            source.first_character_index,
+            source.last_character_index
+            )
         if key in merged:
             merged[key][0] += chroma_weight * score
         else:
