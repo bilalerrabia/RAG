@@ -11,11 +11,12 @@ next -> subject
 next -> correction
 next -> teory
 next -> vllm understanding
-nexy ->exam 4(discord jalal, wats photo)
+next ->exam 4(discord jalal, wats photo)
 next -> book to note
 next -> book re read call me theory
 next -> makefile
 next -> readme
+
 
 next -> llm_model fix and understand transformers
 next -> classes pydantic

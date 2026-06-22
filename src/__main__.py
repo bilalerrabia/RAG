@@ -138,7 +138,7 @@ class RAG:
             f"to {save_directory}/{filename}"
             )
 
-    def pipeline(self):
+    def pipeline(self) -> None:
         self.index()
         self.search_dataset()
         self.answer_dataset()
