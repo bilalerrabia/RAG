@@ -1,0 +1,49 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/goinfre/berrabia/RAG/src/__main__.py", line 3, in <module>
+    import chromadb
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/chromadb/__init__.py", line 6, in <module>
+    from chromadb.api.client import Client as ClientCreator
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/chromadb/api/__init__.py", line 1, in <module>
+    from chromadb.api.types import *  # noqa: F401, F403
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/chromadb/api/types.py", line 1607, in <module>
+    class FtsIndexConfig(BaseModel):
+    ...<4 lines>...
+        pass
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/pydantic/_internal/_model_construction.py", line 256, in __new__
+    complete_model_class(
+    ~~~~~~~~~~~~~~~~~~~~^
+        cls,
+        ^^^^
+    ...<3 lines>...
+        create_model_module=_create_model_module,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/pydantic/_internal/_model_construction.py", line 690, in complete_model_class
+    cls.__pydantic_validator__ = create_schema_validator(
+                                 ~~~~~~~~~~~~~~~~~~~~~~~^
+        schema,
+        ^^^^^^^
+    ...<6 lines>...
+        _use_prebuilt=not is_force_rebuild,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/pydantic/plugin/_schema_validator.py", line 38, in create_schema_validator
+    from ._loader import get_plugins
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/pydantic/plugin/_loader.py", line 3, in <module>
+    import importlib.metadata as importlib_metadata
+  File "/home/berrabia/.local/share/uv/python/cpython-3.14.3-linux-x86_64-gnu/lib/python3.14/importlib/metadata/__init__.py", line 12, in <module>
+    import zipfile
+  File "/home/berrabia/.local/share/uv/python/cpython-3.14.3-linux-x86_64-gnu/lib/python3.14/zipfile/__init__.py", line 2430, in <module>
+    from ._path import (  # noqa: E402
+    ...<4 lines>...
+    )
+  File "/home/berrabia/.local/share/uv/python/cpython-3.14.3-linux-x86_64-gnu/lib/python3.14/zipfile/_path/__init__.py", line 204, in <module>
+    class Path:
+    ...<247 lines>...
+            return self._next(parent_at)
+KeyboardInterrupt

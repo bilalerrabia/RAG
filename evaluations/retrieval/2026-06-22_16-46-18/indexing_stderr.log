@@ -1,0 +1,115 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 14918.62it/s]
+Batches:   0%|          | 0/127 [00:00<?, ?it/s]Batches:   1%|          | 1/127 [00:01<03:27,  1.65s/it]Batches:   2%|▏         | 2/127 [00:03<03:24,  1.63s/it]Batches:   2%|▏         | 3/127 [00:04<03:19,  1.61s/it]Batches:   3%|▎         | 4/127 [00:06<03:17,  1.61s/it]Batches:   4%|▍         | 5/127 [00:08<03:17,  1.62s/it]Batches:   5%|▍         | 6/127 [00:09<03:18,  1.64s/it]Batches:   6%|▌         | 7/127 [00:11<03:16,  1.64s/it]Batches:   6%|▋         | 8/127 [00:13<03:16,  1.65s/it]Batches:   7%|▋         | 9/127 [00:14<03:15,  1.66s/it]Batches:   8%|▊         | 10/127 [00:16<03:14,  1.67s/it]Batches:   9%|▊         | 11/127 [00:18<03:26,  1.78s/it]Batches:   9%|▉         | 12/127 [00:20<03:38,  1.90s/it]Batches:  10%|█         | 13/127 [00:22<03:48,  2.00s/it]Batches:  11%|█         | 14/127 [00:25<03:53,  2.07s/it]Batches:  12%|█▏        | 15/127 [00:27<03:51,  2.06s/it]Batches:  13%|█▎        | 16/127 [00:29<03:48,  2.06s/it]Batches:  13%|█▎        | 17/127 [00:31<03:46,  2.06s/it]Batches:  14%|█▍        | 18/127 [00:33<03:44,  2.06s/it]Batches:  15%|█▍        | 19/127 [00:35<03:42,  2.06s/it]Batches:  16%|█▌        | 20/127 [00:37<03:40,  2.06s/it]Batches:  17%|█▋        | 21/127 [00:39<03:38,  2.06s/it]Batches:  17%|█▋        | 22/127 [00:41<03:36,  2.06s/it]Batches:  18%|█▊        | 23/127 [00:43<03:34,  2.06s/it]Batches:  19%|█▉        | 24/127 [00:45<03:33,  2.07s/it]Batches:  20%|█▉        | 25/127 [00:47<03:34,  2.10s/it]Batches:  20%|██        | 26/127 [00:49<03:29,  2.08s/it]Batches:  21%|██▏       | 27/127 [00:51<03:25,  2.05s/it]Batches:  22%|██▏       | 28/127 [00:53<03:23,  2.05s/it]Batches:  23%|██▎       | 29/127 [00:55<03:19,  2.03s/it]Batches:  24%|██▎       | 30/127 [00:57<03:16,  2.02s/it]Batches:  24%|██▍       | 31/127 [00:59<03:14,  2.03s/it]Batches:  25%|██▌       | 32/127 [01:02<03:12,  2.03s/it]Batches:  26%|██▌       | 33/127 [01:04<03:10,  2.03s/it]Batches:  27%|██▋       | 34/127 [01:06<03:09,  2.04s/it]Batches:  28%|██▊       | 35/127 [01:08<03:11,  2.08s/it]Batches:  28%|██▊       | 36/127 [01:10<03:10,  2.09s/it]Batches:  29%|██▉       | 37/127 [01:12<03:08,  2.10s/it]Batches:  30%|██▉       | 38/127 [01:14<03:06,  2.09s/it]Batches:  31%|███       | 39/127 [01:16<03:03,  2.09s/it]Batches:  31%|███▏      | 40/127 [01:18<03:03,  2.10s/it]Batches:  32%|███▏      | 41/127 [01:20<03:01,  2.11s/it]Batches:  33%|███▎      | 42/127 [01:23<02:59,  2.12s/it]Batches:  34%|███▍      | 43/127 [01:25<03:00,  2.15s/it]Batches:  35%|███▍      | 44/127 [01:27<02:56,  2.12s/it]Batches:  35%|███▌      | 45/127 [01:29<02:52,  2.10s/it]Batches:  36%|███▌      | 46/127 [01:31<02:48,  2.08s/it]Batches:  37%|███▋      | 47/127 [01:33<02:46,  2.08s/it]Batches:  37%|███▋      | 47/127 [01:33<02:39,  2.00s/it]
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/goinfre/berrabia/RAG/src/__main__.py", line 148, in <module>
+    fire.Fire(RAG)
+    ~~~~~~~~~^^^^^
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/fire/core.py", line 135, in Fire
+    component_trace = _Fire(component, args, parsed_flag_args, context, name)
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/fire/core.py", line 468, in _Fire
+    component, remaining_args = _CallAndUpdateTrace(
+                                ~~~~~~~~~~~~~~~~~~~^
+        component,
+        ^^^^^^^^^^
+    ...<2 lines>...
+        treatment='class' if is_class else 'routine',
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        target=component.__name__)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/fire/core.py", line 684, in _CallAndUpdateTrace
+    component = fn(*varargs, **kwargs)
+  File "/goinfre/berrabia/RAG/src/__main__.py", line 30, in index
+    indexer(repo_path, repo_to_save, max_chunk_size)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/goinfre/berrabia/RAG/src/indexer.py", line 34, in indexer
+    embeddings = embedder.encode(
+        chroma_corpus, batch_size=128, show_progress_bar=True)
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/sentence_transformers/util/decorators.py", line 41, in wrapper
+    return func(*args, **kwargs)
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/sentence_transformers/sentence_transformer/model.py", line 657, in encode
+    out_features = self.forward(features, **kwargs)
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/sentence_transformers/base/model.py", line 492, in forward
+    input = module(input, **module_kwargs)
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/sentence_transformers/base/modules/transformer.py", line 1090, in forward
+    model_output = model_method(**filtered_kwargs)
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/transformers/utils/generic.py", line 976, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/transformers/utils/output_capturing.py", line 248, in wrapper
+    outputs = func(self, *args, **kwargs)
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/transformers/models/bert/modeling_bert.py", line 673, in forward
+    encoder_outputs = self.encoder(
+        embedding_output,
+    ...<6 lines>...
+        **kwargs,
+    )
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/transformers/models/bert/modeling_bert.py", line 440, in forward
+    hidden_states = layer_module(
+        hidden_states,
+    ...<4 lines>...
+        **kwargs,
+    )
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/transformers/modeling_layers.py", line 93, in __call__
+    return super().__call__(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/transformers/models/bert/modeling_bert.py", line 387, in forward
+    self_attention_output, _ = self.attention(
+                               ~~~~~~~~~~~~~~^
+        hidden_states,
+        ^^^^^^^^^^^^^^
+    ...<2 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/transformers/models/bert/modeling_bert.py", line 318, in forward
+    attention_output, attn_weights = self.self(
+                                     ~~~~~~~~~^
+        hidden_states,
+        ^^^^^^^^^^^^^^
+    ...<3 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/transformers/models/bert/modeling_bert.py", line 179, in forward
+    query_layer = self.query(hidden_states).view(*hidden_shape).transpose(1, 2)
+                  ~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/torch/nn/modules/linear.py", line 134, in forward
+    return F.linear(input, self.weight, self.bias)
+           ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

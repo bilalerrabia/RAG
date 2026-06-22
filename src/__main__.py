@@ -37,7 +37,7 @@ class RAG:
             chunks_path: str = "data/processed/chunks.json",
             index_path: str = "data/processed",
             k: int = 10
-    ) -> list[MinimalSource]:
+    ) -> Any:
         collection = get_chroma_collection()
         return hybrid_search(
             chunks_path=chunks_path,
@@ -137,6 +137,11 @@ class RAG:
             f"Saved student_search_results_and_answer "
             f"to {save_directory}/{filename}"
             )
+
+    def pipeline(self):
+        self.index()
+        self.search_dataset()
+        self.answer_dataset()
 
 
 if __name__ == "__main__":
