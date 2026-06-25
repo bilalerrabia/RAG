@@ -14,7 +14,8 @@ def preprocess_text(text: str) -> str:
     """Splits snake_case and camelCase to help BM25 understand code."""
     text = text.replace('_', ' ')
     text = re.sub(r'([a-z0-9])([A-Z])', r'\1 \2', text)
-    # camelCase -> camel case
+    # camelCase ->  camel case
+    # camel_case -> camel case
     return text.lower()
 
 
@@ -61,4 +62,5 @@ def indexer(repo_path: str, repo_to_save: str, max_chunk_size: int) -> None:
     retriever.index(corpus_tokens)
 
     pathlib.Path(repo_to_save).mkdir(parents=True, exist_ok=True)
+    # equal to: mkdir -p "$repo_to_save"
     retriever.save(f"{repo_to_save}/bm25_index")

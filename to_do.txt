@@ -1,25 +1,22 @@
 huggingface     lib    llm_model
 understand the models
-regex
-protect all open's
-
 food app
+exam 4(discord jalal, wats photo)
 
 
+
+next -> line by line code.
 next -> refactor
-next -> subject
+next -> youtube
+next -> readme
+
 next -> correction
 next -> teory
 next -> vllm understanding
-next ->exam 4(discord jalal, wats photo)
 next -> book to note
 next -> book re read call me theory
-next -> makefile
-next -> readme
-
 
 next -> llm_model fix and understand transformers
-next -> classes pydantic
 next -> RecursiveCharacterTextSplitter
 
 next -> chroma lib(
@@ -29,8 +26,22 @@ next -> chroma lib(
     client.get_collection(name="vllm_chunks")
     results = collection.query(query_embeddings=query_embedding, n_results=k)
     )
+
 next -> SentenceTransformer
-next -> tqdm.tqdm how its work
-next -> pathlib
+next -> explain plan for correction
+next -> delete private
+next -> implement the recall@k
 
 bash ./exams/scripts/exam_retrieval.sh --student-path ../RAG --moulinette-path ./moulinette/moulinette-ubuntu
+
+
+
+def stars(lists: list[tuple], k: int) -> list[str]:
+pass
+
+
+stars([(0,0), (1,1), (1,2)], 3) -> ["*.."
+                                    ".*."
+                                    "..*"]
+
+

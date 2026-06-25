@@ -28,6 +28,93 @@ Compares the retrieved sources against a ground-truth dataset using the `recall@
 
 ---
 
+### Basic BM25s Library Usage
+
+`bm25s` is a lightweight Python library that implements the BM25 ranking algorithm for keyword-based document retrieval. The typical workflow consists of tokenizing the documents, building a BM25 index, tokenizing a query, retrieving the most relevant documents, and optionally saving the index for later use. In the example below, two documents are tokenized and indexed. A query is then tokenized and searched against the index. The `retrieve()` method returns the matching document IDs and their relevance scores, allowing the original documents to be recovered. Finally, the index is saved to disk and loaded again, avoiding the need to rebuild it each time the application starts.
+
+```python
+import bm25s
+
+datas = [
+    "bilal errabia",
+    "sidna laynesro"
+]
+
+# Tokenize documents
+datas_tokenz = bm25s.tokenize(datas)
+
+# Create and build the BM25 index
+retriever = bm25s.BM25()
+retriever.index(datas_tokenz)
+
+# Tokenize the query
+query = "chkon sidna?"
+query_token = bm25s.tokenize([query])
+
+# Retrieve the top 2 matching documents
+docs, scores = retriever.retrieve(query_token, k=2)
+
+# Convert document IDs back to the original text
+for doc in docs:
+    for doc_id in doc:
+        print(datas[doc_id])
+
+# Save and reload the index
+retriever.save("ghire_tm")
+retriever.load("ghire_tm")
+```
+
+This approach provides a fast and efficient keyword search system that can be integrated into Retrieval-Augmented Generation (RAG) pipelines or any application requiring document retrieval.
+
+### Basic ChromaDB Library Usage
+
+`ChromaDB` is a vector database used to store and retrieve embeddings for semantic search. Unlike BM25, which relies on keyword matching, ChromaDB compares vector representations of documents and queries to find semantically similar content. The typical workflow consists of creating a client, creating or loading a collection, adding documents with their embeddings, and querying the collection using a query embedding. ChromaDB handles the storage and retrieval of vectors, making it a common choice for Retrieval-Augmented Generation (RAG) systems.
+
+```python
+import chromadb
+from sentence_transformers import SentenceTransformer
+
+# Documents to store
+documents = [
+    "bilal errabia",
+    "sidna laynesro"
+]
+
+# Load embedding model
+model = SentenceTransformer("all-MiniLM-L6-v2")
+
+# Generate document embeddings
+embeddings = model.encode(documents).tolist()
+
+# Create or load a persistent database
+client = chromadb.PersistentClient(path="chroma_db")
+
+# Create or get a collection
+collection = client.get_or_create_collection(name="my_collection")
+
+# Add documents and embeddings
+collection.add(
+    ids=["1", "2"],
+    documents=documents,
+    embeddings=embeddings
+)
+
+# Encode the query
+query = "chkon sidna?"
+query_embedding = model.encode(query).tolist()
+
+# Retrieve the top 2 most similar documents
+results = collection.query(
+    query_embeddings=[query_embedding],
+    n_results=2
+)
+
+print(results["documents"])
+```
+
+This approach enables semantic search by comparing the meaning of the query and documents rather than relying solely on exact keyword matches. ChromaDB persists data on disk, supports efficient vector retrieval, and is widely used in RAG pipelines to store and search document embeddings.
+
+
 ## Chunking Strategy
 
 Document segmentation is handled by LangChain's `RecursiveCharacterTextSplitter`.
@@ -147,6 +234,7 @@ https://www.youtube.com/watch?v=Qs_y0lTJAp0&list=PL84IF1fUunhNtKdA0-j8ITM6HC3F6Q
 
 https://youtu.be/8OJC21T2SL4
 
+https://tqdm.github.io/
 
 
 
