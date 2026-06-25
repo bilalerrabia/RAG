@@ -27,13 +27,15 @@ def is_found(retrieved: Any, correct: Any) -> Any:
 
 def evaluate(student_path: str, right_answers_path: str, k: int) -> float:
     """Evaluates student answers against right answers using Recall@k."""
-    with open(student_path, encoding='utf-8') as f:
+
+    with open(student_path) as f:
         student_answers = json.load(f)
-    with open(right_answers_path, encoding='utf-8') as f:
+
+    with open(right_answers_path) as f:
         right_answers = json.load(f)
 
-    # Map question_id to its correct sources
-    gt_map = {
+    # load right answers from answeredquections
+    ra_map = {
         q["question_id"]: q["sources"] for q in
         right_answers["rag_questions"]}
 
@@ -41,13 +43,12 @@ def evaluate(student_path: str, right_answers_path: str, k: int) -> float:
     valid_questions = 0
 
     for result in student_answers["search_results"]:
-        correct_sources = gt_map.get(result["question_id"])
+        correct_sources = ra_map.get(result["question_id"])
         if not correct_sources:
             continue
 
         retrieved = result["retrieved_sources"][:k]
 
-        # Count how many correct sources were found in the retrieved list
         found = sum(
             1 for c_src in correct_sources
             if any(is_found(r_src, c_src) for r_src in retrieved)

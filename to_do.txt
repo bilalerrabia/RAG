@@ -4,36 +4,25 @@ food app
 exam 4(discord jalal, wats photo)
 
 
-
 next -> line by line code.
 next -> refactor
 next -> youtube
-next -> readme
 
 next -> correction
+next -> readme
 next -> teory
 next -> vllm understanding
 next -> book to note
 next -> book re read call me theory
-
+next -> HandsOnLLM 225->258
+next -> udemy
 next -> llm_model fix and understand transformers
-next -> RecursiveCharacterTextSplitter
 
-next -> chroma lib(
-    client = chromadb.PersistentClient(path=repo_to_save)
-    collection = client.get_or_create_collection(name="vllm_chunks")
-    collection.add
-    client.get_collection(name="vllm_chunks")
-    results = collection.query(query_embeddings=query_embedding, n_results=k)
-    )
-
-next -> SentenceTransformer
 next -> explain plan for correction
 next -> delete private
-next -> implement the recall@k
+next -> readme to my final resume
 
 bash ./exams/scripts/exam_retrieval.sh --student-path ../RAG --moulinette-path ./moulinette/moulinette-ubuntu
-
 
 
 def stars(lists: list[tuple], k: int) -> list[str]:

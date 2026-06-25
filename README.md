@@ -26,6 +26,8 @@ Extracts the text from the retrieved sources, truncates it to fit token limits, 
 ### 4. Evaluation System
 Compares the retrieved sources against a ground-truth dataset using the `recall@k` metric, calculating the overlap between retrieved and correct sources.
 
+A RAG system is evaluated on two levels: Retrieval and Generation. For retrieval, we use deterministic metrics like Recall@k to measure chunk overlap. For generation, while LLM-as-a-Judge is popular for evaluating faithfulness, it can also be evaluated using traditional NLP metrics like ROUGE/BLEU, semantic similarity, or human grading against ground-truth answers.
+
 ---
 
 ### Basic BM25s Library Usage
@@ -112,7 +114,11 @@ results = collection.query(
 print(results["documents"])
 ```
 
-This approach enables semantic search by comparing the meaning of the query and documents rather than relying solely on exact keyword matches. ChromaDB persists data on disk, supports efficient vector retrieval, and is widely used in RAG pipelines to store and search document embeddings.
+Semantic Search with ChromaDB and SentenceTransformer
+To capture the conceptual meaning of natural language queries (which keyword-based BM25 struggles with), we implement semantic search using ChromaDB. Because ChromaDB's internal embedding wrapper is slow and lacks RAM caching, we explicitly use the SentenceTransformer library to pre-compute 384-dimensional vectors for our code chunks during indexing and for user queries during retrieval. We bypass ChromaDB's internal model by passing these raw vectors directly to collection.add() and collection.query(). This approach drastically reduces indexing time, eliminates terminal log spam, and ensures our warm retrieval throughput stays well under the 90-second limit while providing robust semantic matching.
+
+
+
 
 
 ## Chunking Strategy
@@ -123,6 +129,29 @@ Document segmentation is handled by LangChain's `RecursiveCharacterTextSplitter`
 *   **Chunk Size**: The maximum chunk size is strictly capped at 2000 characters (configurable via CLI).
 *   **Overlap**: A 400-character overlap (`max_chunk_size // 5`) is used to prevent splitting crucial function signatures or paragraphs in half.
 *   **Filtering**: Non-code files (images, binaries, `.git` directories) are explicitly filtered out to maintain index quality and reduce noise.
+
+### RecursiveCharacterTextSplitter
+
+```python
+ext = pathlib.Path(file_path).suffix
+
+lang_map = {
+    ".py": Language.PYTHON,
+    ".md": Language.MARKDOWN,
+    ".rst": Language.RST
+    }
+
+splitter = RecursiveCharacterTextSplitter.from_language(
+    chunk_size=max_chunk_size,
+    chunk_overlap=max_chunk_size // 5,
+    language=lang_map[ext],
+    add_start_index=True
+)
+
+documents = splitter.create_documents([source_code])
+```
+
+`RecursiveCharacterTextSplitter` is used to divide large source files into smaller, manageable chunks before they are embedded and indexed. The `from_language()` method creates a language-aware splitter that attempts to preserve meaningful code structures such as functions, classes, and blocks when splitting. `chunk_size` defines the maximum number of characters per chunk, while `chunk_overlap` (20% of the chunk size in this case) ensures that neighboring chunks share content, helping retain context during retrieval. Setting `add_start_index=True` stores the original position of each chunk in the document metadata, allowing retrieved results to be traced back to their exact location in the source file. The resulting chunks are returned as `Document` objects, ready for embedding and storage in the vector database.
 
 ---
 
