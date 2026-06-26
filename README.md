@@ -8,6 +8,7 @@ RAG against the Machine is a Retrieval-Augmented Generation (RAG) system designe
 
 The system ingests the codebase, chunks the files using language-aware boundaries, and builds a dual index (BM25 and ChromaDB). When a question is asked, a hybrid retrieval system finds the best matches, feeds them as context to a local `Qwen/Qwen3-0.6B` model, and generates an accurate, source-grounded answer. The pipeline's retrieval quality is measured using the `recall@k` metric, requiring a 5% character overlap to count as a valid match.
 
+RAG solve the knowledge cutoff problem.
 ---
 
 ## System Architecture
@@ -118,7 +119,56 @@ Semantic Search with ChromaDB and SentenceTransformer
 To capture the conceptual meaning of natural language queries (which keyword-based BM25 struggles with), we implement semantic search using ChromaDB. Because ChromaDB's internal embedding wrapper is slow and lacks RAM caching, we explicitly use the SentenceTransformer library to pre-compute 384-dimensional vectors for our code chunks during indexing and for user queries during retrieval. We bypass ChromaDB's internal model by passing these raw vectors directly to collection.add() and collection.query(). This approach drastically reduces indexing time, eliminates terminal log spam, and ensures our warm retrieval throughput stays well under the 90-second limit while providing robust semantic matching.
 
 
+## What is vLLM?
+vLLM (Vectorized Large Language Model) is a high-performance, open-source library developed by UC Berkeley for ultra-fast LLM inference and serving. While standard libraries like Hugging Face transformers are built for general-purpose research, vLLM is built for production. Its primary innovation is PagedAttention, a memory management technique inspired by operating systems that eliminates GPU memory fragmentation in the KV Cache. This allows vLLM to serve 3x-4x more users on the same hardware compared to standard implementations.
 
+Relevance to this Project:
+The knowledge base for this RAG system is built directly on the vLLM repository source code. Our pipeline indexes vLLM's Python files and documentation, allowing users to ask natural language questions about how vLLM's API servers, schedulers, or metrics are implemented.
+
+Technical Implementation Choice:
+While vLLM is the industry standard for LLM serving, it is strictly optimized for NVIDIA/AMD GPUs. Because the evaluation environment for this project is CPU-only, we opted to use Hugging Face transformers (AutoModelForCausalLM) with @torch.inference_mode() and KV Cache enabled for our local Qwen/Qwen3-0.6B generator. This provided the best balance of strict CPU compatibility, memory safety, and generation speed within the moulinette's constraints.
+
+
+## Recall vs. Precision:
+
+In information retrieval, **Precision** measures the exactness of our search results, while **Recall** measures the completeness. Mathematically, they are defined as:
+
+```text
+Precision = TP / (TP + FP)  =  (Relevant Items Retrieved) / (Total Items Retrieved)
+Recall    = TP / (TP + FN)  =  (Relevant Items Retrieved) / (Total Relevant Items in Dataset)
+```
+*(Where TP = True Positives, FP = False Positives, and FN = False Negatives).*
+
+For this RAG system, the evaluation strictly prioritizes **Recall@k**. This is a deliberate and crucial design choice for generation pipelines: an LLM can easily filter out irrelevant context from its prompt (tolerating lower precision), but it cannot magically conjure missing information. If our retriever fails to find the correct code snippet (low recall / high False Negatives), the LLM is guaranteed to hallucinate or fail. Therefore, by maximizing Recall@k, we ensure the LLM’s context window always contains the necessary ground-truth information needed to generate an accurate answer.
+
+
+## The Hugging Face `transformers` Library
+
+The `transformers` library is the industry standard API for accessing and running thousands of pre-trained neural networks. It provides a unified interface so that switching from a Llama model to a Qwen model only requires changing one string of text. 
+
+In this project, we leverage specific modules from the library to handle text generation:
+
+#### 1. `AutoTokenizer` (The Translator)
+Neural networks cannot read text; they only understand numbers. The `AutoTokenizer` translates human text into integer IDs (and back again). 
+* The `Auto` prefix means the library automatically reads the model's config file and downloads the exact correct tokenization algorithm (e.g., Byte-Pair Encoding) for `Qwen/Qwen3-0.6B`.
+* **In our code:** It converts our prompt into PyTorch tensors (`return_tensors="pt"`) and later decodes the model's numerical output back into human-readable text.
+
+#### 2. `AutoModelForCausalLM` (The Brain)
+This loads the actual neural network. "CausalLM" stands for **Causal Language Modeling**.
+* **How it works:** It reads a sequence of words left-to-right and predicts the *next* word. It is "Causal" because it cannot look ahead at future words (the past causes the future).
+* **In our code:** We load the model with `torch_dtype="auto"` and `device_map="auto"` to optimize memory usage. By wrapping the generation call in `@torch.inference_mode()`, we disable gradient tracking, saving massive amounts of RAM and CPU overhead.
+
+#### 3. `pipeline` (The Shortcut API)
+While we use `AutoTokenizer` and `AutoModelForCausalLM` directly for fine-grained control over memory and tensors, the library also offers a high-level `pipeline` API.
+* **What it does:** It wraps the tokenizer, model, and generation loop into a single function. 
+* **Why we didn't use it:** `pipeline` hides the underlying PyTorch tensors. For a strict CLI environment with memory limits, we needed manual control over tensor slicing, KV Cache management (`use_cache=True`), and device mapping (`.to(self.model.device)`).
+
+#### Other Model Architectures in the Ecosystem
+The `transformers` library isn't just for text generation. By swapping the `AutoModelFor...` class, you can load neural networks designed for entirely different tasks:
+* **`AutoModelForSequenceClassification`:** Reads a whole sentence and outputs a single label (e.g., Sentiment Analysis: Positive/Negative).
+* **`AutoModelForTokenClassification`:** Assigns a label to *every single word* in a sentence (e.g., Named Entity Recognition: finding company or person names).
+* **`AutoModelForMaskedLM`:** Bidirectional models (like BERT) that fill in the blanks (e.g., `"The [MASK] is blue"` ➔ `"sky"`), used for text classification and embeddings.
+* **`AutoModelForSeq2SeqLM`:** Encoder-Decoder models (like T5) that take an input sequence and generate a completely new output sequence (e.g., English to French translation).
 
 
 ## Chunking Strategy
@@ -265,6 +315,11 @@ https://youtu.be/8OJC21T2SL4
 
 https://tqdm.github.io/
 
+https://www.youtube.com/watch?v=reAmcocQyBA
+
+https://youtu.be/Qs_y0lTJAp0?list=PL84IF1fUunhNtKdA0-j8ITM6HC3F6QG-t
+
+https://docs.trychroma.com/docs/overview/introduction
 
 
 ### AI Usage

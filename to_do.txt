@@ -8,19 +8,17 @@ next -> line by line code.
 next -> refactor
 next -> youtube
 
-next -> correction
+next -> correctionShett
 next -> readme
 next -> teory
-next -> vllm understanding
-next -> book to note
-next -> book re read call me theory
-next -> HandsOnLLM 225->258
-next -> udemy
-next -> llm_model fix and understand transformers
+next -> llm_model fix
 
-next -> explain plan for correction
+next -> explaine plan for correction
+
 next -> delete private
 next -> readme to my final resume
+
+
 
 bash ./exams/scripts/exam_retrieval.sh --student-path ../RAG --moulinette-path ./moulinette/moulinette-ubuntu
 

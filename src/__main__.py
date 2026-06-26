@@ -58,10 +58,8 @@ class RAG:
         filename = pathlib.Path(dataset_path).name
         answers: list[MinimalSearchResults] = []
 
-
         with open(dataset_path, encoding="utf-8") as f:
             questions = json.load(f)
-
 
         for q in tqdm.tqdm(questions["rag_questions"], desc="searching"):
             q_text = q.get("question_str") or q.get("question")
