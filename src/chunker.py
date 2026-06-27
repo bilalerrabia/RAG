@@ -1,4 +1,3 @@
-"""Handles document chunking for the RAG pipeline."""
 import pathlib
 from langchain_text_splitters import RecursiveCharacterTextSplitter, Language
 from .models import ChunkData

@@ -6,15 +6,14 @@ exam 4(discord jalal, wats photo)
 
 next -> line by line code.
 next -> refactor
-next -> youtube
-
 next -> correctionShett
 next -> readme
-next -> teory
 next -> llm_model fix
 
-next -> explaine plan for correction
 
+next -> youtube
+next -> teory
+next -> explaine plan for correction
 next -> delete private
 next -> readme to my final resume
 

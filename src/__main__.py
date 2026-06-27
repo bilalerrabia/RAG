@@ -1,4 +1,3 @@
-"""Command-Line Interface for the RAG pipeline."""
 import fire
 import chromadb
 import tqdm
@@ -12,11 +11,10 @@ from .indexer import indexer
 from .retriever import hybrid_search
 from .evaluator import evaluate
 from .answerer import answerer
-from chromadb.api.models.Collection import Collection
 
 
 @lru_cache()
-def get_chroma_collection() -> Collection:
+def get_chroma_collection() -> Any:
     client = chromadb.PersistentClient(path="data/processed")
     return client.get_collection(name="vllm_chunks")
 
@@ -76,7 +74,7 @@ class RAG:
             search_results=answers
         )
 
-        with open(f'{save_directory}/{filename}', "w", encoding="utf-8") as f:
+        with open(f'{save_directory}/{filename}', "w") as f:
             json.dump(res.model_dump(), f, indent=4)
 
         print(f"Saved student_search_results to {save_directory}/{filename}")
@@ -100,9 +98,25 @@ class RAG:
         evaluate(student_path, right_answers_path, 10)
         evaluate(student_path, right_answers_path, k)
 
-    def answer(self, query: str = "", k: int = 10) -> Any:
-        context = self.search(query=query, k=k)
-        return answerer(query, context)
+    @staticmethod
+    def get_context_texts(sources: list[MinimalSource], k: int) -> list[str]:
+        texts: list[str] = []
+        for source in sources[:k]:
+            try:
+                with open(source.file_path) as f:
+                    content = f.read()
+                texts.append(
+                    content[
+                        source.first_character_index:
+                        source.last_character_index])
+            except Exception:
+                texts.append("")
+        return texts
+
+    def answer(self, query: str, k: int = 10) -> str:
+        sources: list[MinimalSource] = self.search(query=query, k=k)
+        context_strs: list[str] = self.get_context_texts(sources, k)
+        return str(answerer(query, context_strs))
 
     def answer_dataset(
         self,

@@ -1,4 +1,3 @@
-"""Handles evaluation of search results."""
 import json
 from typing import Any
 
@@ -34,13 +33,12 @@ def evaluate(student_path: str, right_answers_path: str, k: int) -> float:
     with open(right_answers_path) as f:
         right_answers = json.load(f)
 
-    # load right answers from answeredquections
     ra_map = {
         q["question_id"]: q["sources"] for q in
         right_answers["rag_questions"]}
 
     total_score = 0.0
-    valid_questions = 0
+    questions_counter = 0
 
     for result in student_answers["search_results"]:
         correct_sources = ra_map.get(result["question_id"])
@@ -55,8 +53,8 @@ def evaluate(student_path: str, right_answers_path: str, k: int) -> float:
         )
 
         total_score += found / len(correct_sources)
-        valid_questions += 1
+        questions_counter += 1
 
-    recall = total_score / valid_questions if valid_questions > 0 else 0.0
+    recall = total_score / questions_counter if questions_counter > 0 else 0.0
     print(f"recall@{k} score = {recall}")
     return recall
