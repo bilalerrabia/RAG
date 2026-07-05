@@ -1,404 +1,0 @@
-searching:   0%|          | 0/100 [00:00<?, ?it/s]
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [AWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-
-Loading weights:   0%|          | 0/103 [00:00<?, ?it/s][ALoading weights: 100%|██████████| 103/103 [00:00<00:00, 16322.72it/s]
-searching:   1%|          | 1/100 [00:03<05:22,  3.26s/it]
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [Asearching:  13%|█▎        | 13/100 [00:03<00:16,  5.32it/s]
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [Asearching:  24%|██▍       | 24/100 [00:03<00:07, 10.81it/s]
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [Asearching:  37%|███▋      | 37/100 [00:03<00:03, 19.28it/s]
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [Asearching:  48%|████▊     | 48/100 [00:03<00:01, 26.74it/s]
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [Asearching:  59%|█████▉    | 59/100 [00:03<00:01, 35.82it/s]
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [Asearching:  71%|███████   | 71/100 [00:03<00:00, 46.90it/s]
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [Asearching:  84%|████████▍ | 84/100 [00:04<00:00, 60.42it/s]
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [A
-Split strings:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                    [A
-BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s][A
-                                                     [Asearching: 100%|██████████| 100/100 [00:04<00:00, 78.36it/s]searching: 100%|██████████| 100/100 [00:04<00:00, 23.78it/s]
