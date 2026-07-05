@@ -1,0 +1,15 @@
+Student data is valid: True
+Total number of questions: 100
+Total number of questions with sources: 100
+Total number of questions with student sources: 100
+
+🎯 Evaluation Results
+========================================
+📊 Questions evaluated: 100
+📈 Recall@1: 0.000 (0.0%)
+📈 Recall@3: 0.000 (0.0%)
+📈 Recall@5: 0.000 (0.0%)
+📈 Recall@10: 0.000 (0.0%)
+{'recall@1': 0.0, 'recall@3': 0.0, 'recall@5': 0.0, 'recall@10': 0.0}
+FAIL: Recall@5 = 0.000 < 0.8
+False

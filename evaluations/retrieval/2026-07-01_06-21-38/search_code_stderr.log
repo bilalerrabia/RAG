@@ -1,0 +1,34 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/goinfre/berrabia/RAG/src/__main__.py", line 2, in <module>
+    import chromadb
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/chromadb/__init__.py", line 6, in <module>
+    from chromadb.api.client import Client as ClientCreator
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/chromadb/api/__init__.py", line 1, in <module>
+    from chromadb.api.types import *  # noqa: F401, F403
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/chromadb/api/types.py", line 27, in <module>
+    import chromadb.errors as errors
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/chromadb/errors.py", line 110, in <module>
+    class UniqueConstraintError(ChromaError):
+    ...<7 lines>...
+            return "UniqueConstraintError"
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/chromadb/errors.py", line 111, in UniqueConstraintError
+    @overrides
+     ^^^^^^^^^
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/overrides/overrides.py", line 83, in overrides
+    return _overrides(method, check_signature, check_at_runtime)
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/overrides/overrides.py", line 161, in _overrides
+    for super_class in _get_base_classes(sys._getframe(3), global_vars):
+                       ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/overrides/overrides.py", line 197, in _get_base_classes
+    for class_name_components in _get_base_class_names(frame)
+                                 ~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/goinfre/berrabia/RAG/.venv/lib/python3.14/site-packages/overrides/overrides.py", line 207, in _get_base_class_names
+    for instruction in dis.get_instructions(frame.f_code):
+                       ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/berrabia/.local/share/uv/python/cpython-3.14.3-linux-x86_64-gnu/lib/python3.14/dis.py", line 780, in _get_instructions_bytes
+    positions = Positions(*next(co_positions, ()))
+  File "<string>", line 1, in <lambda>
+KeyboardInterrupt
