@@ -1,4 +1,5 @@
 import fire
+import streamlit as st
 import chromadb
 import tqdm
 import json
@@ -160,6 +161,15 @@ class RAG:
 
 if __name__ == "__main__":
     try:
-        fire.Fire(RAG)
+
+        st.header("chat with your docs")
+        querry = st.chat_input("hello world    dfgdf")
+        egent = RAG()
+        egent.index()
+        egent
+        st.chat_message("user").markdown(querry)
+        unswer = egent.unswer(querry=querry)
+        st.chat_message("user").markdown(unswer)
+
     except BaseException as e:
         print(e)
